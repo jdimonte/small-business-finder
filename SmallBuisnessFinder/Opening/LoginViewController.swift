@@ -15,6 +15,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     var loginSuccess = true
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? UINavigationController {
+            dest.modalPresentationStyle = .fullScreen
+        }
+    }
+    
     
     @IBAction func login(_ sender: Any) {
     

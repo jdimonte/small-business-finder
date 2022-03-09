@@ -19,6 +19,13 @@
 		51BDA87227C6AE04000395B2 /* SmallBuisnessFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BDA87127C6AE04000395B2 /* SmallBuisnessFinderUITests.swift */; };
 		8B377AF6235B69BBD9DD4E0F /* Pods_SmallBuisnessFinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD4D105EB0123D2959309A0 /* Pods_SmallBuisnessFinderTests.framework */; };
 		E045C70627C707A9004A7F9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E045C70527C707A9004A7F9C /* GoogleService-Info.plist */; };
+		E04FB53F27D92D7100E12D27 /* BusinessProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB53E27D92D7100E12D27 /* BusinessProfileViewController.swift */; };
+		E04FB54127D92D7D00E12D27 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54027D92D7D00E12D27 /* UserProfileViewController.swift */; };
+		E04FB54427D93A1500E12D27 /* BusinessProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54327D93A1500E12D27 /* BusinessProfileHeader.swift */; };
+		E04FB54727D93D0500E12D27 /* UserObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54627D93D0500E12D27 /* UserObjects.swift */; };
+		E04FB54927D93D5500E12D27 /* BusinessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54827D93D5500E12D27 /* BusinessObject.swift */; };
+		E04FB54B27D9404700E12D27 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54A27D9404700E12D27 /* UserProfileHeader.swift */; };
+		E04FB54D27D946BE00E12D27 /* BusinessLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54C27D946BE00E12D27 /* BusinessLocationViewController.swift */; };
 		E095958827C758B1009C75C4 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958727C758B1009C75C4 /* user.swift */; };
 		E095958A27C75A07009C75C4 /* DatabaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958927C75A07009C75C4 /* DatabaseFunctions.swift */; };
 		E095958C27C75A48009C75C4 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958B27C75A48009C75C4 /* extensions.swift */; };
@@ -67,6 +74,13 @@
 		D006B8C8A05328FEFEDFB3C5 /* Pods_SmallBuisnessFinder_SmallBuisnessFinderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmallBuisnessFinder_SmallBuisnessFinderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B3762EC3246546C72CDC06 /* Pods-SmallBuisnessFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallBuisnessFinder.release.xcconfig"; path = "Target Support Files/Pods-SmallBuisnessFinder/Pods-SmallBuisnessFinder.release.xcconfig"; sourceTree = "<group>"; };
 		E045C70527C707A9004A7F9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E04FB53E27D92D7100E12D27 /* BusinessProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessProfileViewController.swift; sourceTree = "<group>"; };
+		E04FB54027D92D7D00E12D27 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		E04FB54327D93A1500E12D27 /* BusinessProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessProfileHeader.swift; sourceTree = "<group>"; };
+		E04FB54627D93D0500E12D27 /* UserObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObjects.swift; sourceTree = "<group>"; };
+		E04FB54827D93D5500E12D27 /* BusinessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessObject.swift; sourceTree = "<group>"; };
+		E04FB54A27D9404700E12D27 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		E04FB54C27D946BE00E12D27 /* BusinessLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLocationViewController.swift; sourceTree = "<group>"; };
 		E095958727C758B1009C75C4 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		E095958927C75A07009C75C4 /* DatabaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFunctions.swift; sourceTree = "<group>"; };
 		E095958B27C75A48009C75C4 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -128,6 +142,9 @@
 		51BDA84E27C6AE00000395B2 /* SmallBuisnessFinder */ = {
 			isa = PBXGroup;
 			children = (
+				E04FB54527D93CEE00E12D27 /* Objects */,
+				E04FB54227D939FF00E12D27 /* Headers */,
+				E04FB53D27D92D2500E12D27 /* Profiles */,
 				E095958D27C75D83009C75C4 /* Opening */,
 				E095958627C75884009C75C4 /* Resources */,
 				E045C70527C707A9004A7F9C /* GoogleService-Info.plist */,
@@ -171,6 +188,34 @@
 				92280551BA64D1DC23B6CE42 /* Pods-SmallBuisnessFinderTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E04FB53D27D92D2500E12D27 /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				E04FB53E27D92D7100E12D27 /* BusinessProfileViewController.swift */,
+				E04FB54027D92D7D00E12D27 /* UserProfileViewController.swift */,
+				E04FB54C27D946BE00E12D27 /* BusinessLocationViewController.swift */,
+			);
+			path = Profiles;
+			sourceTree = "<group>";
+		};
+		E04FB54227D939FF00E12D27 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				E04FB54327D93A1500E12D27 /* BusinessProfileHeader.swift */,
+				E04FB54A27D9404700E12D27 /* UserProfileHeader.swift */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		E04FB54527D93CEE00E12D27 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				E04FB54627D93D0500E12D27 /* UserObjects.swift */,
+				E04FB54827D93D5500E12D27 /* BusinessObject.swift */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 		E095958627C75884009C75C4 /* Resources */ = {
@@ -442,6 +487,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E095958F27C75DA3009C75C4 /* LoginViewController.swift in Sources */,
+				E04FB54B27D9404700E12D27 /* UserProfileHeader.swift in Sources */,
+				E04FB54127D92D7D00E12D27 /* UserProfileViewController.swift in Sources */,
 				E095958827C758B1009C75C4 /* user.swift in Sources */,
 				E095958A27C75A07009C75C4 /* DatabaseFunctions.swift in Sources */,
 				51BDA85427C6AE00000395B2 /* ViewController.swift in Sources */,
@@ -449,6 +496,11 @@
 				51BDA85027C6AE00000395B2 /* AppDelegate.swift in Sources */,
 				51BDA85227C6AE00000395B2 /* SceneDelegate.swift in Sources */,
 				E095958C27C75A48009C75C4 /* extensions.swift in Sources */,
+				E04FB54727D93D0500E12D27 /* UserObjects.swift in Sources */,
+				E04FB54927D93D5500E12D27 /* BusinessObject.swift in Sources */,
+				E04FB54D27D946BE00E12D27 /* BusinessLocationViewController.swift in Sources */,
+				E04FB54427D93A1500E12D27 /* BusinessProfileHeader.swift in Sources */,
+				E04FB53F27D92D7100E12D27 /* BusinessProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

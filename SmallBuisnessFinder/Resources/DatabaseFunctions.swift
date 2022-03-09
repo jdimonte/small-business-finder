@@ -24,7 +24,7 @@ public class DatabaseFunctions {
     public func insertNewUser(with email: String, username: String, number: String?, name: String, completion: @escaping (Bool) -> Void) {
         
         let safeKey = email.safeDatabaseKey()
-        database.child(safeKey).setValue(["username": username, "number": number, "name": name]) { error, _ in
+        database.child("users").child(safeKey).setValue(["username": username, "number": number, "name": name]) { error, _ in
             if error == nil {
                 completion(true)
                 return

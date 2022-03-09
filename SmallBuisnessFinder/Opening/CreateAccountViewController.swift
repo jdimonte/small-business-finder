@@ -33,6 +33,7 @@ class CreateAccountViewController: UIViewController {
                 // possibly need to put the registration on a separte thread
                 if didRegister {
                     // enter app
+                    self.performSegue(withIdentifier: "accountCreated", sender: self)
                 } else {
                     // create alert for account creation error
                     self.createAlert(with: "Error", message: "Unable to create account")
@@ -45,9 +46,23 @@ class CreateAccountViewController: UIViewController {
         }
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? UINavigationController {
+            dest.modalPresentationStyle = .fullScreen
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        setup()
+    }
+    
+    func setup() {
+        password.isSecureTextEntry = true
+        confirmPassword.isSecureTextEntry = true
     }
     
     func checkInputs() -> Bool {

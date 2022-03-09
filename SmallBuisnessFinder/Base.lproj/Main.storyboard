@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9zj-PB-qhr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -43,7 +43,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l6t-F3-b1G"/>
-                                    <segue destination="wsZ-t6-qWB" kind="presentation" identifier="login" modalPresentationStyle="fullScreen" id="CAB-He-20y"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -53,6 +52,7 @@
                     <connections>
                         <outlet property="password" destination="wID-0p-Q6E" id="LmG-DO-oCX"/>
                         <outlet property="username" destination="c27-9S-rdb" id="4HC-6M-rHu"/>
+                        <segue destination="wsZ-t6-qWB" kind="presentation" identifier="login" id="Xzz-Oa-y3o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -132,6 +132,7 @@
                         <outlet property="password" destination="X1d-ZZ-qO8" id="hu4-wa-kQv"/>
                         <outlet property="phoneNumber" destination="ZcH-tV-K7c" id="Lc2-tf-EKH"/>
                         <outlet property="username" destination="XTI-zc-Q8A" id="lj0-1v-Rbm"/>
+                        <segue destination="wsZ-t6-qWB" kind="presentation" identifier="accountCreated" id="JTB-9H-0BF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmL-EO-4f5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -143,7 +144,7 @@
             <objects>
                 <viewController id="2C5-ty-3S7" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vDK-7n-0JM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hz6-do-IAr">
@@ -251,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="1568" y="1554"/>
         </scene>
-        <!--View Controller-->
+        <!--Business Profile View Controller-->
         <scene sceneID="1CZ-lB-6Tm">
             <objects>
-                <viewController id="9zj-PB-qhr" sceneMemberID="viewController">
+                <viewController id="9zj-PB-qhr" customClass="BusinessProfileViewController" customModule="SmallBuisnessFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QEe-45-g9e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,7 +272,7 @@
             <objects>
                 <navigationController storyboardIdentifier="login" id="wsZ-t6-qWB" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UAM-OB-fzf">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -282,10 +283,10 @@
             </objects>
             <point key="canvasLocation" x="19" y="826"/>
         </scene>
-        <!--View Controller-->
+        <!--User Profile View Controller-->
         <scene sceneID="rCu-Kx-oRg">
             <objects>
-                <viewController id="emf-IO-3ds" sceneMemberID="viewController">
+                <viewController id="emf-IO-3ds" customClass="UserProfileViewController" customModule="SmallBuisnessFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zdP-WJ-A0Q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -298,6 +299,9 @@
             <point key="canvasLocation" x="-1367" y="1554"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="JTB-9H-0BF"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
