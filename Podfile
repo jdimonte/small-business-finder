@@ -7,6 +7,11 @@ target 'SmallBuisnessFinder' do
 
   # Pods for SmallBuisnessFinder
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Storage'
 
   target 'SmallBuisnessFinderTests' do
     inherit! :search_paths

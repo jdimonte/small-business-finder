@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,11 @@
 		51BDA87227C6AE04000395B2 /* SmallBuisnessFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BDA87127C6AE04000395B2 /* SmallBuisnessFinderUITests.swift */; };
 		8B377AF6235B69BBD9DD4E0F /* Pods_SmallBuisnessFinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD4D105EB0123D2959309A0 /* Pods_SmallBuisnessFinderTests.framework */; };
 		E045C70627C707A9004A7F9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E045C70527C707A9004A7F9C /* GoogleService-Info.plist */; };
+		E095958827C758B1009C75C4 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958727C758B1009C75C4 /* user.swift */; };
+		E095958A27C75A07009C75C4 /* DatabaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958927C75A07009C75C4 /* DatabaseFunctions.swift */; };
+		E095958C27C75A48009C75C4 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958B27C75A48009C75C4 /* extensions.swift */; };
+		E095958F27C75DA3009C75C4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958E27C75DA3009C75C4 /* LoginViewController.swift */; };
+		E095959127C75F95009C75C4 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095959027C75F95009C75C4 /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +67,11 @@
 		D006B8C8A05328FEFEDFB3C5 /* Pods_SmallBuisnessFinder_SmallBuisnessFinderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmallBuisnessFinder_SmallBuisnessFinderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B3762EC3246546C72CDC06 /* Pods-SmallBuisnessFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallBuisnessFinder.release.xcconfig"; path = "Target Support Files/Pods-SmallBuisnessFinder/Pods-SmallBuisnessFinder.release.xcconfig"; sourceTree = "<group>"; };
 		E045C70527C707A9004A7F9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E095958727C758B1009C75C4 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
+		E095958927C75A07009C75C4 /* DatabaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFunctions.swift; sourceTree = "<group>"; };
+		E095958B27C75A48009C75C4 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		E095958E27C75DA3009C75C4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E095959027C75F95009C75C4 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		F7AA2F8403584F159AE73BA2 /* Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests.debug.xcconfig"; path = "Target Support Files/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +128,8 @@
 		51BDA84E27C6AE00000395B2 /* SmallBuisnessFinder */ = {
 			isa = PBXGroup;
 			children = (
+				E095958D27C75D83009C75C4 /* Opening */,
+				E095958627C75884009C75C4 /* Resources */,
 				E045C70527C707A9004A7F9C /* GoogleService-Info.plist */,
 				51BDA84F27C6AE00000395B2 /* AppDelegate.swift */,
 				51BDA85127C6AE00000395B2 /* SceneDelegate.swift */,
@@ -158,8 +170,26 @@
 				92AB37163F46177CEF7346B4 /* Pods-SmallBuisnessFinderTests.debug.xcconfig */,
 				92280551BA64D1DC23B6CE42 /* Pods-SmallBuisnessFinderTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E095958627C75884009C75C4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E095958727C758B1009C75C4 /* user.swift */,
+				E095958927C75A07009C75C4 /* DatabaseFunctions.swift */,
+				E095958B27C75A48009C75C4 /* extensions.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E095958D27C75D83009C75C4 /* Opening */ = {
+			isa = PBXGroup;
+			children = (
+				E095958E27C75DA3009C75C4 /* LoginViewController.swift */,
+				E095959027C75F95009C75C4 /* CreateAccountViewController.swift */,
+			);
+			path = Opening;
 			sourceTree = "<group>";
 		};
 		EF8C478DE05C4580B6A807CE /* Frameworks */ = {
@@ -411,9 +441,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E095958F27C75DA3009C75C4 /* LoginViewController.swift in Sources */,
+				E095958827C758B1009C75C4 /* user.swift in Sources */,
+				E095958A27C75A07009C75C4 /* DatabaseFunctions.swift in Sources */,
 				51BDA85427C6AE00000395B2 /* ViewController.swift in Sources */,
+				E095959127C75F95009C75C4 /* CreateAccountViewController.swift in Sources */,
 				51BDA85027C6AE00000395B2 /* AppDelegate.swift in Sources */,
 				51BDA85227C6AE00000395B2 /* SceneDelegate.swift in Sources */,
+				E095958C27C75A48009C75C4 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

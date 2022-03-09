@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SmallBuisnessFinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="SmallBuisnessFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,22 +42,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <segue destination="wsZ-t6-qWB" kind="presentation" modalPresentationStyle="fullScreen" id="CAB-He-20y"/>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l6t-F3-b1G"/>
+                                    <segue destination="wsZ-t6-qWB" kind="presentation" identifier="login" modalPresentationStyle="fullScreen" id="CAB-He-20y"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="password" destination="wID-0p-Q6E" id="LmG-DO-oCX"/>
+                        <outlet property="username" destination="c27-9S-rdb" id="4HC-6M-rHu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="88.392857142857139"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Account View Controller-->
         <scene sceneID="LwX-7N-1lt">
             <objects>
-                <viewController id="Pc5-jJ-x6S" sceneMemberID="viewController">
+                <viewController id="Pc5-jJ-x6S" customClass="CreateAccountViewController" customModule="SmallBuisnessFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqH-7Q-Jc7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,15 +115,28 @@
                                 <rect key="frame" x="143" y="690" width="128" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="submit:" destination="Pc5-jJ-x6S" eventType="touchUpInside" id="O1J-ly-y3G"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cIw-UM-ced"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="confirmPassword" destination="B1x-cY-KCz" id="Cm0-Sl-1En"/>
+                        <outlet property="createAccount" destination="fr2-pr-t10" id="Khr-Z9-VbJ"/>
+                        <outlet property="email" destination="lrP-75-a3j" id="voJ-HA-B8G"/>
+                        <outlet property="fullName" destination="wAd-K2-Fkf" id="ncs-iq-QUJ"/>
+                        <outlet property="haveAccount" destination="zln-1L-2y8" id="auS-qD-jQI"/>
+                        <outlet property="password" destination="X1d-ZZ-qO8" id="hu4-wa-kQv"/>
+                        <outlet property="phoneNumber" destination="ZcH-tV-K7c" id="Lc2-tf-EKH"/>
+                        <outlet property="username" destination="XTI-zc-Q8A" id="lj0-1v-Rbm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmL-EO-4f5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="782.60869565217399" y="95.758928571428569"/>
+            <point key="canvasLocation" x="781" y="88"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="06B-D1-px5">
@@ -138,7 +157,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="209" id="by9-kN-mFp">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="209"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="209"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="by9-kN-mFp" id="hSz-9A-tXy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="209"/>
@@ -250,7 +269,7 @@
         <!--Navigation Controller-->
         <scene sceneID="iTo-6D-dcs">
             <objects>
-                <navigationController id="wsZ-t6-qWB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="login" id="wsZ-t6-qWB" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UAM-OB-fzf">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
