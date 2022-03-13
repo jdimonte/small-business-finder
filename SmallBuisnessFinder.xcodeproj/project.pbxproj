@@ -32,6 +32,9 @@
 		E095958C27C75A48009C75C4 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958B27C75A48009C75C4 /* extensions.swift */; };
 		E095958F27C75DA3009C75C4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958E27C75DA3009C75C4 /* LoginViewController.swift */; };
 		E095959127C75F95009C75C4 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095959027C75F95009C75C4 /* CreateAccountViewController.swift */; };
+		E8AA45D327DE844700D215C2 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AA45D227DE844700D215C2 /* FavoritesViewController.swift */; };
+		E8AA45D527DE897F00D215C2 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AA45D427DE897F00D215C2 /* FavoritesCell.swift */; };
+		E8AA45D727DE924500D215C2 /* FavoritesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AA45D627DE924500D215C2 /* FavoritesHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,9 @@
 		E095958B27C75A48009C75C4 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		E095958E27C75DA3009C75C4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E095959027C75F95009C75C4 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		E8AA45D227DE844700D215C2 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		E8AA45D427DE897F00D215C2 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
+		E8AA45D627DE924500D215C2 /* FavoritesHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHeader.swift; sourceTree = "<group>"; };
 		F7AA2F8403584F159AE73BA2 /* Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests.debug.xcconfig"; path = "Target Support Files/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +150,7 @@
 		51BDA84E27C6AE00000395B2 /* SmallBuisnessFinder */ = {
 			isa = PBXGroup;
 			children = (
+				E8AA45D127DE840B00D215C2 /* Favorites */,
 				E07D78C127DD4ED9002CAE72 /* Cells */,
 				E04FB54527D93CEE00E12D27 /* Objects */,
 				E04FB54227D939FF00E12D27 /* Headers */,
@@ -208,6 +215,7 @@
 			children = (
 				E04FB54327D93A1500E12D27 /* BusinessProfileHeader.swift */,
 				E04FB54A27D9404700E12D27 /* UserProfileHeader.swift */,
+				E8AA45D627DE924500D215C2 /* FavoritesHeader.swift */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
@@ -225,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				E07D78C227DD4EEF002CAE72 /* reviewCell.swift */,
+				E8AA45D427DE897F00D215C2 /* FavoritesCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -246,6 +255,14 @@
 				E095959027C75F95009C75C4 /* CreateAccountViewController.swift */,
 			);
 			path = Opening;
+			sourceTree = "<group>";
+		};
+		E8AA45D127DE840B00D215C2 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				E8AA45D227DE844700D215C2 /* FavoritesViewController.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		EF8C478DE05C4580B6A807CE /* Frameworks */ = {
@@ -500,11 +517,14 @@
 				E095958F27C75DA3009C75C4 /* LoginViewController.swift in Sources */,
 				E04FB54B27D9404700E12D27 /* UserProfileHeader.swift in Sources */,
 				E04FB54127D92D7D00E12D27 /* UserProfileViewController.swift in Sources */,
+				E8AA45D727DE924500D215C2 /* FavoritesHeader.swift in Sources */,
 				E095958827C758B1009C75C4 /* user.swift in Sources */,
 				E095958A27C75A07009C75C4 /* DatabaseFunctions.swift in Sources */,
+				E8AA45D527DE897F00D215C2 /* FavoritesCell.swift in Sources */,
 				51BDA85427C6AE00000395B2 /* ViewController.swift in Sources */,
 				E095959127C75F95009C75C4 /* CreateAccountViewController.swift in Sources */,
 				51BDA85027C6AE00000395B2 /* AppDelegate.swift in Sources */,
+				E8AA45D327DE844700D215C2 /* FavoritesViewController.swift in Sources */,
 				51BDA85227C6AE00000395B2 /* SceneDelegate.swift in Sources */,
 				E095958C27C75A48009C75C4 /* extensions.swift in Sources */,
 				E04FB54727D93D0500E12D27 /* UserObjects.swift in Sources */,

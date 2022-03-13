@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 import SafariServices
 import FirebaseDatabase
 
@@ -36,6 +37,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     var favorite = UIButton()
     
     var reviewCollection: UICollectionView!
+    var coords : CLLocationCoordinate2D!
     
 
     override func viewDidLoad() {
@@ -185,8 +187,12 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     
     @objc func didTapLocation() {
         // take user to map VC and display the location(s) of their business
-        let vc = BusinessLocationViewController()
+        // let vc = BusinessLocationViewController()
+        let vc = FavoritesViewController()
         vc.modalPresentationStyle = .fullScreen
+        // delete
+        // self.coords = CLLocationCoordinate2D(latitude: 25.015941, longitude: 121.303928)
+        // vc.coords = self.coords
         self.present(vc, animated: true, completion: nil)
     }
     

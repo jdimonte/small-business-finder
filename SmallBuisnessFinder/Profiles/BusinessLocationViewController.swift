@@ -12,6 +12,12 @@ class BusinessLocationViewController: UIViewController {
     
     var dismissButton = UIButton()
     
+    var mapView = MKMapView()
+//    var location = MKMapItem()
+    
+    var coords : CLLocationCoordinate2D!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +28,28 @@ class BusinessLocationViewController: UIViewController {
         dismissButton.frame = CGRect(x: 10, y: 75, width: 30, height: 30)
         dismissButton.setBackgroundImage(UIImage(systemName: "xmark"), for: .normal)
         
+        
+        
+        mapView.centerCoordinate = coords
+        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        //let placemark = MKPlacemark(coordinate: coords)
+        //mapView.addAnnotation(placemark)
+        
+        let pointAnnotation = MKPointAnnotation()
+        pointAnnotation.title = "UwU"
+        pointAnnotation.coordinate = coords
+        mapView.addAnnotation(pointAnnotation)
+        
+        let regionRadius : CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegion(
+            center: coords,
+            latitudinalMeters: regionRadius * 2.0,
+            longitudinalMeters: regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+        
+        view.addSubview(mapView)
         view.addSubview(dismissButton)
-
+        
         // Do any additional setup after loading the view.
     }
     
