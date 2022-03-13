@@ -26,6 +26,7 @@
 		E04FB54927D93D5500E12D27 /* BusinessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54827D93D5500E12D27 /* BusinessObject.swift */; };
 		E04FB54B27D9404700E12D27 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54A27D9404700E12D27 /* UserProfileHeader.swift */; };
 		E04FB54D27D946BE00E12D27 /* BusinessLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54C27D946BE00E12D27 /* BusinessLocationViewController.swift */; };
+		E07D78C327DD4EEF002CAE72 /* reviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07D78C227DD4EEF002CAE72 /* reviewCell.swift */; };
 		E095958827C758B1009C75C4 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958727C758B1009C75C4 /* user.swift */; };
 		E095958A27C75A07009C75C4 /* DatabaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958927C75A07009C75C4 /* DatabaseFunctions.swift */; };
 		E095958C27C75A48009C75C4 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958B27C75A48009C75C4 /* extensions.swift */; };
@@ -81,6 +82,7 @@
 		E04FB54827D93D5500E12D27 /* BusinessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessObject.swift; sourceTree = "<group>"; };
 		E04FB54A27D9404700E12D27 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		E04FB54C27D946BE00E12D27 /* BusinessLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLocationViewController.swift; sourceTree = "<group>"; };
+		E07D78C227DD4EEF002CAE72 /* reviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reviewCell.swift; sourceTree = "<group>"; };
 		E095958727C758B1009C75C4 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		E095958927C75A07009C75C4 /* DatabaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFunctions.swift; sourceTree = "<group>"; };
 		E095958B27C75A48009C75C4 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		51BDA84E27C6AE00000395B2 /* SmallBuisnessFinder */ = {
 			isa = PBXGroup;
 			children = (
+				E07D78C127DD4ED9002CAE72 /* Cells */,
 				E04FB54527D93CEE00E12D27 /* Objects */,
 				E04FB54227D939FF00E12D27 /* Headers */,
 				E04FB53D27D92D2500E12D27 /* Profiles */,
@@ -216,6 +219,14 @@
 				E04FB54827D93D5500E12D27 /* BusinessObject.swift */,
 			);
 			path = Objects;
+			sourceTree = "<group>";
+		};
+		E07D78C127DD4ED9002CAE72 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E07D78C227DD4EEF002CAE72 /* reviewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E095958627C75884009C75C4 /* Resources */ = {
@@ -499,6 +510,7 @@
 				E04FB54727D93D0500E12D27 /* UserObjects.swift in Sources */,
 				E04FB54927D93D5500E12D27 /* BusinessObject.swift in Sources */,
 				E04FB54D27D946BE00E12D27 /* BusinessLocationViewController.swift in Sources */,
+				E07D78C327DD4EEF002CAE72 /* reviewCell.swift in Sources */,
 				E04FB54427D93A1500E12D27 /* BusinessProfileHeader.swift in Sources */,
 				E04FB53F27D92D7100E12D27 /* BusinessProfileViewController.swift in Sources */,
 			);

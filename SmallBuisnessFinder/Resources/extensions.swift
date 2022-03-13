@@ -21,3 +21,7 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
+extension UIColor {
+    static var extraLightGray = UIColor(displayP3Red: 214/255, green: 214/255, blue: 214/255, alpha: 1)
+}

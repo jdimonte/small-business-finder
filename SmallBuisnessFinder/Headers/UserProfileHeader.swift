@@ -11,6 +11,18 @@ import UIKit
 
 class UserProfileHeader: UIView {
     
+    var profileImage = UIImageView()
+    var name = UILabel()
+    var numFollowers = UILabel()
+    var numFollowing = UILabel()
+    var followers = UILabel()
+    var following = UILabel()
+    
+    // buttons to switch back and forth between the user's favorites and reviews (could change them, not sure yet)
+    var favorites = UIButton()
+    var reviews = UIButton()
+    
+    var user: UserObject?
     
     
     

@@ -24,8 +24,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         
         setup()
-
-        // Do any additional setup after loading the view.
     }
     
     
