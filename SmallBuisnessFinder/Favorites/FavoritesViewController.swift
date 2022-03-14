@@ -17,8 +17,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         favoritesTable.delegate = self
         favoritesTable.dataSource = self
 
-        favoritesTable.tableHeaderView = FavoritesHeader()
-        
+        favoritesTable.tableHeaderView = FavoritesHeader(frame : CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200))
+         
         view.backgroundColor = .white
         
         view.addSubview(favoritesTable)
@@ -39,6 +39,16 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let vc = BusinessProfileViewController()
+        vc.modalPresentationStyle = .fullScreen
+        // delete
+        // self.coords = CLLocationCoordinate2D(latitude: 25.015941, longitude: 121.303928)
+        // vc.coords = self.coords
+        self.present(vc, animated: true, completion: nil)
     }
 
 }

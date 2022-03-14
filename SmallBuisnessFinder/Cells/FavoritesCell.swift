@@ -33,11 +33,17 @@ class FavoritesCell : UITableViewCell {
         self.category.frame = CGRect(x: self.img.frame.maxX + 15, y: 45, width: 60, height: 20)
         self.location.frame = CGRect(x: self.category.frame.maxX + 15, y: 45, width: 180, height: 20)
         
+        self.starButton.addTarget(self, action: #selector(didTapStar), for: .touchUpInside)
+        
         addSubview(self.img)
         addSubview(self.starButton)
         addSubview(self.name)
         addSubview(self.category)
         addSubview(self.location)
+    }
+    
+    @objc func didTapStar(){
+        self.starButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
     }
     
 }
