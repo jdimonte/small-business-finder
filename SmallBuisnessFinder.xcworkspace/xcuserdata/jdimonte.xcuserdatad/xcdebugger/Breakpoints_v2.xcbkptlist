@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "02DAA133-A87D-4789-9F4F-4FFED7CF824B"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4609498D-EDDB-413D-8008-D14333634E63"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SmallBuisnessFinder/Cells/BuisnessCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "BusinessCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "4609498D-EDDB-413D-8008-D14333634E63 - 31af31fb11fd7de1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.businessName.getter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "4609498D-EDDB-413D-8008-D14333634E63 - 90d47801a9e0d9d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.businessName.setter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "155">
+               </Location>
+               <Location
+                  uuid = "4609498D-EDDB-413D-8008-D14333634E63 - 4a4f64ba61c0a68d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.businessName.modify : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "4609498D-EDDB-413D-8008-D14333634E63 - 143d5f32de91ca8e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.businessName.modify : Swift.Optional&lt;__C.UILabel&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "4609498D-EDDB-413D-8008-D14333634E63 - 3ed0cb6adf5fc880"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; SmallBuisnessFinder.BusinessCell"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "255">
+               </Location>
+               <Location
+                  uuid = "4609498D-EDDB-413D-8008-D14333634E63 - e92cd0f7d51a4d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SmallBuisnessFinder.BusinessCell&gt;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9AEA9773-88E9-45BA-8DB0-79D68CCA3ED3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SmallBuisnessFinder/Cells/BuisnessCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "BusinessCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "9AEA9773-88E9-45BA-8DB0-79D68CCA3ED3 - 5258d84694849939"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.businessImage.getter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "9AEA9773-88E9-45BA-8DB0-79D68CCA3ED3 - dab89fa807c2b52d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.businessImage.setter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "155">
+               </Location>
+               <Location
+                  uuid = "9AEA9773-88E9-45BA-8DB0-79D68CCA3ED3 - 229ca0d6ad30feb0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.businessImage.modify : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "9AEA9773-88E9-45BA-8DB0-79D68CCA3ED3 - 880b373f548aa77e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.businessImage.modify : Swift.Optional&lt;__C.UIImageView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "9AEA9773-88E9-45BA-8DB0-79D68CCA3ED3 - 3ed0cb6adf5fc863"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; SmallBuisnessFinder.BusinessCell"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "195">
+               </Location>
+               <Location
+                  uuid = "9AEA9773-88E9-45BA-8DB0-79D68CCA3ED3 - e92cd0f7d51a431"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmallBuisnessFinder.BusinessCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SmallBuisnessFinder.BusinessCell&gt;"
+                  moduleName = "SmallBuisnessFinder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jdimonte/Desktop/SmallBuisnessFinder/SmallBuisnessFinder/SmallBuisnessFinder/Cells/BuisnessCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "151">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

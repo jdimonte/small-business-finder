@@ -14,7 +14,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as? BusinessCell
-        let business = self.businessesArray[indexPath.row]
+        //let business = self.businessesArray[indexPath.row]
         cell?.businessImage.image = UIImage(named: "pizza")!
         cell?.businessName.text = "Freddy's"
         cell?.businessDescription.text = "Best Pizza in Ann Arbor!"
