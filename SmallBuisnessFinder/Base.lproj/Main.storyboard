@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9zj-PB-qhr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2C5-ty-3S7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -132,19 +131,19 @@
                         <outlet property="password" destination="X1d-ZZ-qO8" id="hu4-wa-kQv"/>
                         <outlet property="phoneNumber" destination="ZcH-tV-K7c" id="Lc2-tf-EKH"/>
                         <outlet property="username" destination="XTI-zc-Q8A" id="lj0-1v-Rbm"/>
-                        <segue destination="wsZ-t6-qWB" kind="presentation" identifier="accountCreated" id="JTB-9H-0BF"/>
+                        <segue destination="wsZ-t6-qWB" kind="presentation" identifier="accountCreated" modalPresentationStyle="fullScreen" id="JTB-9H-0BF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmL-EO-4f5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="781" y="88"/>
         </scene>
-        <!--View Controller-->
+        <!--Feed View Controller-->
         <scene sceneID="06B-D1-px5">
             <objects>
-                <viewController id="2C5-ty-3S7" sceneMemberID="viewController">
+                <viewController id="2C5-ty-3S7" customClass="FeedViewController" customModule="SmallBuisnessFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vDK-7n-0JM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hz6-do-IAr">
@@ -157,8 +156,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="209" id="by9-kN-mFp">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="209"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="209" id="by9-kN-mFp" customClass="BusinessCell" customModule="SmallBuisnessFinder" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="209"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="by9-kN-mFp" id="hSz-9A-tXy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="209"/>
@@ -181,6 +180,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LRo-47-KHQ">
                                                     <rect key="frame" x="20" y="31" width="85" height="73"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMt-WA-Q6k">
                                                     <rect key="frame" x="318" y="11" width="76" height="21"/>
@@ -191,6 +191,12 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="businessDescription" destination="vXa-IR-8ns" id="HGT-2i-DyB"/>
+                                            <outlet property="businessDistance" destination="xMt-WA-Q6k" id="bO4-DL-u9e"/>
+                                            <outlet property="businessImage" destination="LRo-47-KHQ" id="uN6-ZV-H8D"/>
+                                            <outlet property="businessName" destination="unF-2U-pQL" id="WI7-2c-dcy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -199,6 +205,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="CjB-g4-oPX"/>
+                    <connections>
+                        <outlet property="tableView" destination="98U-GF-GkJ" id="Hgl-5S-dk0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgM-wB-4ed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -272,7 +281,7 @@
             <objects>
                 <navigationController storyboardIdentifier="login" id="wsZ-t6-qWB" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UAM-OB-fzf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -300,12 +309,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="07t-ZG-IN6"/>
         <segue reference="JTB-9H-0BF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
