@@ -44,6 +44,8 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        navigationController?.title = "Profile"
+        
         retrieveData()
         
        /* while(!isReady) {
@@ -110,7 +112,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: view.frame.size.width/2 - 20, height: 200)
-        reviewCollection = UICollectionView(frame: CGRect(x: 0, y: 400, width: view.frame.size.width, height: view.frame.size.height - 400), collectionViewLayout: layout)
+        reviewCollection = UICollectionView(frame: CGRect(x: 0, y: 425, width: view.frame.size.width, height: view.frame.size.height - 400), collectionViewLayout: layout)
         reviewCollection.delegate = self
         reviewCollection.dataSource = self
         reviewCollection?.register(reviewCell.self, forCellWithReuseIdentifier: "MyCell")
@@ -144,13 +146,13 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         
         [
             businessImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            businessImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            businessImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
             businessImage.heightAnchor.constraint(equalToConstant: 50),
             businessImage.widthAnchor.constraint(equalToConstant: 50),
             
             name.leadingAnchor.constraint(equalTo: businessImage.trailingAnchor, constant: 20),
             name.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -75),
-            name.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            name.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
             name.heightAnchor.constraint(equalToConstant: 30),
             
             phoneNumber.leadingAnchor.constraint(equalTo: businessImage.trailingAnchor, constant: 20),
@@ -159,7 +161,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
             phoneNumber.heightAnchor.constraint(equalToConstant: 20),
             
             favorite.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            favorite.topAnchor.constraint(equalTo: view.topAnchor, constant: 105),
+            favorite.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
             favorite.heightAnchor.constraint(equalToConstant: 30),
             favorite.widthAnchor.constraint(equalToConstant: 30),
             
@@ -187,13 +189,12 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     
     @objc func didTapLocation() {
         // take user to map VC and display the location(s) of their business
-        // let vc = BusinessLocationViewController()
-        let vc = FavoritesViewController()
-        vc.modalPresentationStyle = .fullScreen
+        let vc = BusinessLocationViewController()
         // delete
-        // self.coords = CLLocationCoordinate2D(latitude: 25.015941, longitude: 121.303928)
-        // vc.coords = self.coords
-        self.present(vc, animated: true, completion: nil)
+        self.coords = CLLocationCoordinate2D(latitude: 25.015941, longitude: 121.303928)
+        vc.coords = self.coords
+        self.navigationController?.pushViewController(vc, animated: true)
+        //self.present(vc, animated: true, completion: nil)
     }
     
     @objc func didTapWebsite() {

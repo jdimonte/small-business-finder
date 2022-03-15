@@ -44,11 +44,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = BusinessProfileViewController()
-        vc.modalPresentationStyle = .fullScreen
-        // delete
-        // self.coords = CLLocationCoordinate2D(latitude: 25.015941, longitude: 121.303928)
-        // vc.coords = self.coords
-        self.present(vc, animated: true, completion: nil)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

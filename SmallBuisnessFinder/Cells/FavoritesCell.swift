@@ -21,6 +21,7 @@ class FavoritesCell : UITableViewCell {
         self.category.text = category
         self.location.text = location
         
+        
         self.name.font = .boldSystemFont(ofSize: 18)
         self.category.font = .systemFont(ofSize: 12)
         self.location.font = .systemFont(ofSize: 12)
@@ -35,11 +36,11 @@ class FavoritesCell : UITableViewCell {
         
         self.starButton.addTarget(self, action: #selector(didTapStar), for: .touchUpInside)
         
-        addSubview(self.img)
-        addSubview(self.starButton)
-        addSubview(self.name)
-        addSubview(self.category)
-        addSubview(self.location)
+        contentView.addSubview(self.img)
+        contentView.addSubview(self.starButton)
+        contentView.addSubview(self.name)
+        contentView.addSubview(self.category)
+        contentView.addSubview(self.location)
     }
     
     @objc func didTapStar(){
