@@ -23,6 +23,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let vc = DetailsViewController()
+        performSegue(withIdentifier: "detail", sender: self)
+        //self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -73,13 +80,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         */
         print("AHHHH")
         
-        let controller = (segue.destination as! UINavigationController).viewControllers[0] as! DetailsViewController
-        controller.businessName.text = "Done..."
+        //let controller = (segue.destination as! UINavigationController).viewControllers[0] as! DetailsViewController
+        //controller.businessName.text = "Done..."
     
 
         
-        guard let firstVC = segue.destination as? DetailsViewController else { return }
-        firstVC.businessName.text = "Freddy's"
+        //guard let firstVC = segue.destination as? DetailsViewController else { return }
+        //firstVC.businessName.text = "Freddy's"
         
         print("AHHHH")
         /*
