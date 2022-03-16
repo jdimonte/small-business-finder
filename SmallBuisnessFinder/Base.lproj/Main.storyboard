@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2C5-ty-3S7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -34,7 +34,7 @@
                                 <rect key="frame" x="64" y="446" width="287" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5WH-gF-5nN">
                                 <rect key="frame" x="149" y="611" width="116" height="100"/>
@@ -51,7 +51,7 @@
                     <connections>
                         <outlet property="password" destination="wID-0p-Q6E" id="LmG-DO-oCX"/>
                         <outlet property="username" destination="c27-9S-rdb" id="4HC-6M-rHu"/>
-                        <segue destination="wsZ-t6-qWB" kind="presentation" identifier="login" id="Xzz-Oa-y3o"/>
+                        <segue destination="njB-S3-WcH" kind="presentation" identifier="login" modalPresentationStyle="fullScreen" id="3kX-Hp-R1E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -131,7 +131,7 @@
                         <outlet property="password" destination="X1d-ZZ-qO8" id="hu4-wa-kQv"/>
                         <outlet property="phoneNumber" destination="ZcH-tV-K7c" id="Lc2-tf-EKH"/>
                         <outlet property="username" destination="XTI-zc-Q8A" id="lj0-1v-Rbm"/>
-                        <segue destination="wsZ-t6-qWB" kind="presentation" identifier="accountCreated" modalPresentationStyle="fullScreen" id="JTB-9H-0BF"/>
+                        <segue destination="njB-S3-WcH" kind="presentation" identifier="accountCreated" modalPresentationStyle="fullScreen" id="0hX-mX-v0a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmL-EO-4f5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -143,7 +143,7 @@
             <objects>
                 <viewController id="2C5-ty-3S7" customClass="FeedViewController" customModule="SmallBuisnessFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vDK-7n-0JM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hz6-do-IAr">
@@ -211,6 +211,7 @@
                                             <outlet property="businessDistance" destination="xMt-WA-Q6k" id="bO4-DL-u9e"/>
                                             <outlet property="businessImage" destination="LRo-47-KHQ" id="uN6-ZV-H8D"/>
                                             <outlet property="businessName" destination="unF-2U-pQL" id="WI7-2c-dcy"/>
+                                            <segue destination="5pg-E4-4XQ" kind="presentation" trigger="accessoryAction" modalPresentationStyle="fullScreen" id="rQo-8z-gJl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -226,12 +227,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgM-wB-4ed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="740.57971014492762" y="1553.5714285714284"/>
+            <point key="canvasLocation" x="780" y="2393"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="FXa-jK-mje">
             <objects>
-                <viewController id="5pg-E4-4XQ" sceneMemberID="viewController">
+                <viewController id="5pg-E4-4XQ" customClass="DetailsViewController" customModule="SmallBuisnessFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W2w-7Z-LZd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,10 +272,16 @@
                         <viewLayoutGuide key="safeArea" id="6eT-5p-nbn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="businessDescription" destination="c5Z-9e-OUb" id="Hvb-Z0-DQe"/>
+                        <outlet property="businessDistance" destination="SLr-U0-hRy" id="LXU-os-wLn"/>
+                        <outlet property="businessImage" destination="Tdo-2R-S5j" id="mJe-iX-p52"/>
+                        <outlet property="businessName" destination="FCq-s7-bO1" id="Pv2-5z-mw1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Clw-Wy-QfQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1568" y="1554"/>
+            <point key="canvasLocation" x="1536" y="2393"/>
         </scene>
         <!--Business Profile View Controller-->
         <scene sceneID="1CZ-lB-6Tm">
@@ -286,17 +293,37 @@
                         <viewLayoutGuide key="safeArea" id="r5o-or-Hh2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="mV8-bY-Zys"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ncU-3R-NeP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-499" y="1554"/>
+            <point key="canvasLocation" x="19" y="2393"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="doN-FC-ePM">
+            <objects>
+                <tabBarController id="njB-S3-WcH" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gRm-NB-TG7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="wsZ-t6-qWB" kind="relationship" relationship="viewControllers" id="MuC-Uc-7Pz"/>
+                        <segue destination="MLS-3a-OPR" kind="relationship" relationship="viewControllers" id="krq-WK-Wee"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aJc-lj-I1P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="358" y="880"/>
+        </scene>
+        <!--Home-->
         <scene sceneID="iTo-6D-dcs">
             <objects>
                 <navigationController storyboardIdentifier="login" id="wsZ-t6-qWB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" selectedImage="house.fill" catalog="system" id="IFp-8w-deV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UAM-OB-fzf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -305,7 +332,24 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wln-H6-bvk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19" y="826"/>
+            <point key="canvasLocation" x="780" y="1613"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="Mk2-0W-fgM">
+            <objects>
+                <navigationController title="Profile" id="MLS-3a-OPR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" selectedImage="person.fill" catalog="system" id="TZz-z4-HUR"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tO1-im-YhJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9zj-PB-qhr" kind="relationship" relationship="rootViewController" id="M2W-Zi-Pau"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="03h-3M-6i1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="19" y="1613"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="rCu-Kx-oRg">
@@ -320,14 +364,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a86-Hn-GD8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1367" y="1554"/>
+            <point key="canvasLocation" x="-746" y="2393"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6GL-py-vec"/>
-        <segue reference="Xzz-Oa-y3o"/>
+        <segue reference="0hX-mX-v0a"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

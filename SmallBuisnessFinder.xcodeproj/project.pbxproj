@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		059A2A8CD9A9849BF1517160 /* Pods_SmallBuisnessFinder_SmallBuisnessFinderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D006B8C8A05328FEFEDFB3C5 /* Pods_SmallBuisnessFinder_SmallBuisnessFinderUITests.framework */; };
 		3BB45EDE05CBF897DCA5AC35 /* Pods_SmallBuisnessFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4366EE3C3B9542DAC32E4336 /* Pods_SmallBuisnessFinder.framework */; };
+		5123570127E1819500BC9AC2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5123570027E1819500BC9AC2 /* DetailsViewController.swift */; };
 		5147DC1127DFBD1800635CBF /* BuisnessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5147DC1027DFBD1800635CBF /* BuisnessCell.swift */; };
 		5147DC1427DFBF7800635CBF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5147DC1327DFBF7800635CBF /* HomeViewController.swift */; };
 		51BDA85027C6AE00000395B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BDA84F27C6AE00000395B2 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		4366EE3C3B9542DAC32E4336 /* Pods_SmallBuisnessFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmallBuisnessFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E581A04B987C092BF46B687 /* Pods-SmallBuisnessFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallBuisnessFinder.debug.xcconfig"; path = "Target Support Files/Pods-SmallBuisnessFinder/Pods-SmallBuisnessFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		4FD4D105EB0123D2959309A0 /* Pods_SmallBuisnessFinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmallBuisnessFinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5123570027E1819500BC9AC2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		5147DC1027DFBD1800635CBF /* BuisnessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuisnessCell.swift; sourceTree = "<group>"; };
 		5147DC1327DFBF7800635CBF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		51BDA84C27C6AE00000395B2 /* SmallBuisnessFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmallBuisnessFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 				51BDA85A27C6AE04000395B2 /* LaunchScreen.storyboard */,
 				51BDA85D27C6AE04000395B2 /* Info.plist */,
 				5147DC1327DFBF7800635CBF /* HomeViewController.swift */,
+				5123570027E1819500BC9AC2 /* DetailsViewController.swift */,
 			);
 			path = SmallBuisnessFinder;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				E095958F27C75DA3009C75C4 /* LoginViewController.swift in Sources */,
 				E04FB54B27D9404700E12D27 /* UserProfileHeader.swift in Sources */,
 				E04FB54127D92D7D00E12D27 /* UserProfileViewController.swift in Sources */,
+				5123570127E1819500BC9AC2 /* DetailsViewController.swift in Sources */,
 				E8AA45D727DE924500D215C2 /* FavoritesHeader.swift in Sources */,
 				E095958827C758B1009C75C4 /* user.swift in Sources */,
 				5147DC1427DFBF7800635CBF /* HomeViewController.swift in Sources */,

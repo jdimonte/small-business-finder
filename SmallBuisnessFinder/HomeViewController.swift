@@ -60,6 +60,38 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         */
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /*
+        let tappedCell = sender
+        let indexPath = self.tableView .indexPath(for: tappedCell as! UITableViewCell)
+        //let business = self.businessesArray[indexPath]
+        let business:[String:String] = ["name":"Freddy's", "description":"Best Pizza in Ann Arbor!", "distance": "10"]
+
+        let detailsViewController = segue destinationViewController
+        
+        detailsViewController.business = business
+        */
+        print("AHHHH")
+        
+        let controller = (segue.destination as! UINavigationController).viewControllers[0] as! DetailsViewController
+        controller.businessName.text = "Done..."
+    
+
+        
+        guard let firstVC = segue.destination as? DetailsViewController else { return }
+        firstVC.businessName.text = "Freddy's"
+        
+        print("AHHHH")
+        /*
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        NSDictionary *movie = self.movies[indexPath.row];
+        
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.movie = movie;
+ */
+    }
+    
     // need to get this setup properly so the segue will not happen if the credentials are incorrect
     //override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
       //  return loginSuccess
