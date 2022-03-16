@@ -16,6 +16,7 @@ class FiltersViewController: UIViewController {
     var categoriesLabel = UILabel()
     var categories = ["Clothing", "General", "Grocery", "Trinkets", "Restaurant"]
     var dismissButton = UIButton()
+    var applyFilters = UIButton()
     
  
     override func viewDidLoad() {
@@ -39,9 +40,17 @@ class FiltersViewController: UIViewController {
         location.backgroundColor = .extraLightGray
         location.layer.cornerRadius = 5
         location.layer.masksToBounds = true
+        location.font = .systemFont(ofSize: 20)
         
         dismissButton.setBackgroundImage(UIImage(systemName: "xmark"), for: .normal)
         dismissButton.addTarget(self, action: #selector(didTapDismiss), for: .touchUpInside)
+        
+        applyFilters.setTitle("Apply Filters", for: .normal)
+        applyFilters.addTarget(self, action: #selector(applyFilter), for: .touchUpInside)
+        applyFilters.backgroundColor = .blue
+        applyFilters.layer.cornerRadius = 10
+        applyFilters.layer.masksToBounds = true
+        applyFilters.setTitleColor(.white, for: .normal)
         
         setupCategories()
         
@@ -51,6 +60,7 @@ class FiltersViewController: UIViewController {
         view.addSubview(distance)
         view.addSubview(categoriesLabel)
         view.addSubview(dismissButton)
+        view.addSubview(applyFilters)
         
         layoutConstraints()
     }
@@ -94,6 +104,7 @@ class FiltersViewController: UIViewController {
             categoriesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             categoriesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             categoriesLabel.heightAnchor.constraint(equalToConstant: 40),
+            
         ].forEach { $0.isActive = true }
     }
     
@@ -108,7 +119,11 @@ class FiltersViewController: UIViewController {
             counter += 30
             view.addSubview(button)
             view.addSubview(label)
+            
+            
         }
+        
+        applyFilters.frame = CGRect(x: view.frame.size.width/4, y: 350 + counter + 20, width: view.frame.size.width/2, height: 40)
     }
     
     @objc func didTapCategory() {
@@ -118,6 +133,10 @@ class FiltersViewController: UIViewController {
     @objc func didTapDismiss() {
         self.dismiss(animated: true, completion: nil)
         
+    }
+    
+    @objc func applyFilter() {
+        navigationController?.popViewController(animated: true)
     }
     
 }

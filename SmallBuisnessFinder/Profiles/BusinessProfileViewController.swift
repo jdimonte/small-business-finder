@@ -191,10 +191,9 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         // take user to map VC and display the location(s) of their business
         let vc = BusinessLocationViewController()
         // delete
-        self.coords = CLLocationCoordinate2D(latitude: 25.015941, longitude: 121.303928)
+        self.coords = CLLocationCoordinate2D(latitude: 25.015941, longitude: 121.303928) // lat: 42.279594, long: -83.732124
         vc.coords = self.coords
         self.navigationController?.pushViewController(vc, animated: true)
-        //self.present(vc, animated: true, completion: nil)
     }
     
     @objc func didTapWebsite() {
