@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    
     var loginSuccess = true
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,9 +44,21 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        password.isSecureTextEntry = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+        view.addGestureRecognizer(tap)
 
         // Do any additional setup after loading the view.
     }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    
     
     // need to get this setup properly so the segue will not happen if the credentials are incorrect
     //override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

@@ -30,7 +30,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     var websiteLink = UIButton()
     var email = UILabel()
     var tags = UILabel()
-    var business: BusinessObject!
+    var business = BusinessObject(name: "Definitely a business", phoneNumber: "800-123-4567", busDescription: "Best business in the entire world", latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
     var descriptionView = UIView()
     var reviewsArray: [reviewContent]?
     
@@ -47,12 +47,6 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         navigationController?.title = "Profile"
         
         retrieveData()
-        
-       /* while(!isReady) {
-            if let business = self.business {
-                isReady = true
-            }
-        }*/
         runEverything()
     }
     
@@ -62,16 +56,17 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     
     func setup() {
         
-        self.name.text = "Beauty Salon" // business.name ??
+        self.name.text = business.name ?? "Joe's Pizza"
         self.name.font = .boldSystemFont(ofSize: 24)
         self.name.textColor = .black
         
-        self.phoneNumber.text = "810-404-2577"
+        self.phoneNumber.text = business.phoneNumber ?? "810-404-2577"
         self.phoneNumber.font = .systemFont(ofSize: 14)
         
-        self.busDescription.text = "Best Beauty Salon in Ann Arbor" //business.busDescription ??
+        self.busDescription.text = business.busDescription ?? "Self proclaimed best pizza place in the Ann Arbor area, hands down" //business.busDescription ??
         self.busDescription.font = .systemFont(ofSize: 12)
         self.busDescription.textColor = .black
+        self.busDescription.numberOfLines = 0
         
         descriptionView.backgroundColor = .extraLightGray  // placeholder for now, probably will want to change
         descriptionView.layer.cornerRadius = 30
@@ -106,7 +101,12 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         numFollowing.textColor = .black
         numFollowing.font = .systemFont(ofSize: 10)*/
         
-        businessImage.image = UIImage(systemName: "person")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(didTapHere))
+        
+        
+        businessImage.image = UIImage(named: business.name ?? " ")
+        businessImage.layer.cornerRadius = 40
+        businessImage.layer.masksToBounds = true
         
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -118,7 +118,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         reviewCollection?.register(reviewCell.self, forCellWithReuseIdentifier: "MyCell")
         
         
-        favorite.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
+        favorite.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
         favorite.addTarget(self, action: #selector(didTapFavorite), for: .touchUpInside)
         
         view.addSubview(reviewCollection)
@@ -147,8 +147,8 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         [
             businessImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             businessImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
-            businessImage.heightAnchor.constraint(equalToConstant: 50),
-            businessImage.widthAnchor.constraint(equalToConstant: 50),
+            businessImage.heightAnchor.constraint(equalToConstant: 80),
+            businessImage.widthAnchor.constraint(equalToConstant: 80),
             
             name.leadingAnchor.constraint(equalTo: businessImage.trailingAnchor, constant: 20),
             name.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -75),
@@ -186,19 +186,25 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         ].forEach { $0.isActive = true }
     }
     
+    @objc func didTapHere() {
+        let vc = SetttingsViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     @objc func didTapLocation() {
         // take user to map VC and display the location(s) of their business
         let vc = BusinessLocationViewController()
+        vc.name = business.name ?? "Joe's Pizza"
         // delete
-        self.coords = CLLocationCoordinate2D(latitude: 25.015941, longitude: 121.303928) // lat: 42.279594, long: -83.732124
+        self.coords = CLLocationCoordinate2D(latitude: 42.279594, longitude: -83.732124) // lat: , long: -83.732124
         vc.coords = self.coords
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func didTapWebsite() {
         // take user to the business's website
-        let url = URL(string: "https://www.espn.com/") // business.websiteLink
+        let url = URL(string: "https://www.joespizzanycmenu.com/") // business.websiteLink
         guard let websiteURL = url else {
             return
         }

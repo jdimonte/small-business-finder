@@ -28,11 +28,14 @@ class FavoritesCell : UITableViewCell {
         
         self.starButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
         
-        self.img.frame = CGRect(x: 10, y: 10, width: 50, height: 50)
+        self.img.frame = CGRect(x: 5, y: 10, width: 60, height: 60)
         self.starButton.frame = CGRect(x: UIScreen.main.bounds.width - 65, y: 25, width: 30, height: 30)
         self.name.frame = CGRect(x: self.img.frame.maxX + 15, y: 10, width: 200, height: 30)
         self.category.frame = CGRect(x: self.img.frame.maxX + 15, y: 45, width: 60, height: 20)
         self.location.frame = CGRect(x: self.category.frame.maxX + 15, y: 45, width: 180, height: 20)
+        
+        self.img.layer.cornerRadius = 30
+        self.img.layer.masksToBounds = true
         
         self.starButton.addTarget(self, action: #selector(didTapStar), for: .touchUpInside)
         

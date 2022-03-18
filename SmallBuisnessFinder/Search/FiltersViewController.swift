@@ -17,10 +17,15 @@ class FiltersViewController: UIViewController {
     var categories = ["Clothing", "General", "Grocery", "Trinkets", "Restaurant"]
     var dismissButton = UIButton()
     var applyFilters = UIButton()
+    var delegate: searchDelegate!
     
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+        view.addGestureRecognizer(tap)
         
         
         view.backgroundColor = .white
@@ -63,6 +68,11 @@ class FiltersViewController: UIViewController {
         view.addSubview(applyFilters)
         
         layoutConstraints()
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     
@@ -136,6 +146,7 @@ class FiltersViewController: UIViewController {
     }
     
     @objc func applyFilter() {
+        delegate.didApplyFilters()
         navigationController?.popViewController(animated: true)
     }
     

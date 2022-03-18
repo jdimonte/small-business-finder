@@ -7,7 +7,12 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+protocol searchDelegate {
+    func didApplyFilters()
+}
+
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, searchDelegate {
+    
     
     var tableView = UITableView()
     
@@ -15,8 +20,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var businesses = [BusinessObject]()
     var counter = 0
     
-    var businessNames = ["Joe's Pizza", "M-Den", "Target", "No Thai", "Freddy's", "", "", "", "", ""]
+    var businessNames = ["Joe's Pizza", "M-Den", "Target", "No Thai", "Freddy's"," ", " ", " ", " ", " "]
     var businessCategories = ["Restaurant", "Clothing", "General", "Restaurant", "Restaurant", "Grocery", "Clothing", "Restaurant", "Something", "Something"]
+    var descriptions = ["Self proclaimed best pizza place in the Ann Arbor area", "Get all your U of M swag, Go Blue", "New addition to Ann Arbor", "Definitely not Thai food", "Second best pizza in the Ann Arbor area because the best was already claimed"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +38,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.addSubview(tableView)
         
         setup()
-
-        // Do any additional setup after loading the view.
     }
     
     func setup() {
@@ -48,7 +52,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = FavoritesCell()
-        cell.initFavCell(img: UIImage(systemName: "person")!, name: businessNames[indexPath.row], category: businessCategories[indexPath.row], location: "Ann Arbor, MI")
+        cell.initFavCell(img: UIImage(named: businessNames[indexPath.row])!, name: businessNames[indexPath.row], category: businessCategories[indexPath.row], location: "Ann Arbor, MI")
         return cell
     }
     
@@ -59,21 +63,28 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = BusinessProfileViewController()
+        vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count >= 3 {
-            counter = Int.random(in: 0...10)
+            counter = Int.random(in: 0...5)
             tableView.reloadData()
         }
     }
     
     @objc func didTapFilters() {
         let vc = FiltersViewController()
+        vc.delegate = self
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didApplyFilters() {
+        counter = 5
+        tableView.reloadData()
     }
     
 

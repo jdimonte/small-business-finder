@@ -17,6 +17,8 @@ class BusinessLocationViewController: UIViewController {
     
     var coords : CLLocationCoordinate2D!
     
+    var name = String()
+    
     
 
     override func viewDidLoad() {
@@ -36,7 +38,7 @@ class BusinessLocationViewController: UIViewController {
         //mapView.addAnnotation(placemark)
         
         let pointAnnotation = MKPointAnnotation()
-        pointAnnotation.title = "UwU"
+        pointAnnotation.title = name
         pointAnnotation.coordinate = coords
         mapView.addAnnotation(pointAnnotation)
         
