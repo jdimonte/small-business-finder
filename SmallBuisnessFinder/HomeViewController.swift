@@ -14,42 +14,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var businessCategories = ["Restaurant", "Clothing", "General", "Restaurant", "Restaurant", "Grocery", "Clothing", "Restaurant", "Something", "Something"]
     var descriptions = ["Self proclaimed best pizza place in the Ann Arbor area", "Get all your U of M swag, Go Blue", "New addition to Ann Arbor", "Definitely not Thai food", "Second best pizza in the Ann Arbor area because the best was already claimed"]
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as? BusinessCell
-        //let business = self.businessesArray[indexPath.row]
-        cell?.businessImage.image = UIImage(named: businessNames[indexPath.row])!
-        cell?.businessName.text = businessNames[indexPath.row]
-        cell?.businessDescription.text = descriptions[indexPath.row]
-        cell?.businessDistance.text = "10 mi"
-
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let vc = BusinessProfileViewController()
-        vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
-        //performSegue(withIdentifier: "detail", sender: self)
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        200
-    }
-    
-    
-    
-
-    
-    
     
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var businessesArray: NSDictionary!
+    
+    var businessArray = [BusinessObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +27,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        //let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 
-        view.addGestureRecognizer(tap)
+        //view.addGestureRecognizer(tap)
         
         self.fetchBusinesses()
     }
@@ -72,6 +42,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func fetchBusinesses() {
         //make array of businesses
+        
+        let ref = Database.database().reference(withPath: "businesses")
+        
+        ref.getData() { error, snapshot in
+            guard let dict = snapshot.value as? [String:AnyObject] else { return }
+            
+            for i in dict.keys {
+                if let bus = dict[i] {
+                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
+                }
+            }
+            DispatchQueue.main.async { self.tableView.reloadData() }
+        }
+       
+        self.tableView.reloadData()
+        
         /*
         var ref:DatabaseReference!
         ref = Database.database().reference()
@@ -127,4 +113,37 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // need to get this setup properly so the segue will not happen if the credentials are incorrect
     //override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
       //  return loginSuccess
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if businessArray.count == 0 {
+            return 0
+        } else {
+            return businessArray.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView .dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as? BusinessCell
+        //let business = self.businessesArray[indexPath.row]
+        cell?.businessImage.image = UIImage(named: businessNames[indexPath.row])!
+        cell?.businessName.text = businessArray[indexPath.row].name
+        cell?.businessDescription.text = businessArray[indexPath.row].busDescription
+        cell?.businessDistance.text = "10 mi"
+
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let vc = BusinessProfileViewController()
+        vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
+        //performSegue(withIdentifier: "detail", sender: self)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        200
+    }
 }

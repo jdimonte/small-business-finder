@@ -19,6 +19,7 @@ class BusinessObject {
     var websiteLink: String?
     var following: Int?
     var followers: Int?
+    var email: String?
     
     
     init(name: String?, phoneNumber: String?, busDescription: String?, latCoord: Int?, longCoord: Int?, websiteLink: String?, following: Int?, followers: Int?) {

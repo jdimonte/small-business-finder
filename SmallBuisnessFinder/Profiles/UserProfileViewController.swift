@@ -48,6 +48,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         numFollower.translatesAutoresizingMaskIntoConstraints = false
         numFollowing.translatesAutoresizingMaskIntoConstraints = false
         
+        
     }
     
     

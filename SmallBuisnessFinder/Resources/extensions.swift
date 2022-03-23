@@ -24,4 +24,5 @@ extension UIViewController {
 
 extension UIColor {
     static var extraLightGray = UIColor(displayP3Red: 214/255, green: 214/255, blue: 214/255, alpha: 1)
+    static var gold = UIColor(displayP3Red: 255/255, green: 215/255, blue: 0/255, alpha: 1)
 }

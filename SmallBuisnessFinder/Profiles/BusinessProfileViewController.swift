@@ -12,11 +12,15 @@ import FirebaseDatabase
 
 struct reviewContent {
     var title: String?
-    var rating: String?
+    var rating: Int?
     var reviewDescription: String?
 }
 
-class BusinessProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+protocol PopUpDelegate {
+    func setAlphaValue()
+}
+
+class BusinessProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PopUpDelegate {
     
     var businessImage = UIImageView()
     var name = UILabel()
@@ -32,7 +36,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     var tags = UILabel()
     var business = BusinessObject(name: "Definitely a business", phoneNumber: "800-123-4567", busDescription: "Best business in the entire world", latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
     var descriptionView = UIView()
-    var reviewsArray: [reviewContent]?
+    var reviewsArray = [reviewContent]()
     
     var favorite = UIButton()
     
@@ -235,16 +239,28 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func retrieveReviews() {
-        let ref = Database.database().reference(withPath: "reviews")
+        if let email = business.email {
+            let ref = Database.database().reference(withPath: "reviews").child(email)
+            
+            ref.getData() { error, snapshot in
+                guard let dict = snapshot.value as? [String:AnyObject] else { return }
+                for i in dict.keys {
+                    if let bus = dict[i] {
+                        self.reviewsArray.append(reviewContent(title: dict[i] as? String, rating: bus["rating"] as? Int, reviewDescription: bus["description"] as? String))
+                    }
+                }
+            }
+        }
+        
         
         // get the reviews for the specific business and store them in reviewsArray
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let reviewsArray = self.reviewsArray {
-            return reviewsArray.count
-        } else {
+        if self.reviewsArray.count == 0 {
             return 10
+        } else {
+            return self.reviewsArray.count
         }
     }
     
@@ -267,7 +283,213 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        return
+        self.view.alpha = 0.5
+        let vc = PopUpViewController(title: "Great Business", text: "really friendly staff, super helpful. Felt right at home the entire time. Would definitely recommend to friends", rating: 5, buttonText: "Close")
+        vc.delegate = self
+        self.present(vc, animated: true)
+    }
+    
+    func setAlphaValue() {
+        view.alpha = 1.0
+    }
+}
+
+
+private class ReviewPopUp: UIView {
+    
+    let popUpView = UIView(frame: CGRect.zero)
+    let title = UILabel(frame: CGRect.zero)
+    let rating = UILabel(frame: CGRect.zero)
+    let reviewDes = UILabel(frame: CGRect.zero)
+    let username = UILabel(frame: CGRect.zero)
+    let cancelButton = UIButton(frame: CGRect.zero)
+    let starOne = UIImageView(frame: CGRect.zero)
+    let starTwo = UIImageView(frame: CGRect.zero)
+    let starThree = UIImageView(frame: CGRect.zero)
+    let starFour = UIImageView(frame: CGRect.zero)
+    let starFive = UIImageView(frame: CGRect.zero)
+    
+    let borderWidth: CGFloat = 2.0
+    
+    init() {
+        super.init(frame: CGRect.zero)
+        
+        popUpView.backgroundColor = .black
+        popUpView.layer.masksToBounds = true
+        popUpView.layer.borderWidth = borderWidth
+        popUpView.layer.borderColor = UIColor.blue.cgColor
+        
+        title.textColor = .white
+        title.layer.masksToBounds = true
+        title.font = .boldSystemFont(ofSize: 35)
+        
+        rating.textColor = .white
+        rating.font = .systemFont(ofSize: 20)
+        rating.layer.masksToBounds = true
+        
+        reviewDes.textColor = .white
+        reviewDes.font = .systemFont(ofSize: 20)
+        reviewDes.layer.masksToBounds = true
+        reviewDes.numberOfLines = 0
+        
+        username.textColor = .white
+        username.font = .systemFont(ofSize: 12)
+        username.layer.masksToBounds = true
+        
+        cancelButton.backgroundColor = .blue
+        cancelButton.setTitle("Close", for: .normal)
+        cancelButton.layer.masksToBounds = true
+        
+        let config = UIImage.SymbolConfiguration(pointSize: 25)
+        starOne.image = UIImage(systemName: "star", withConfiguration: config)
+        starOne.tintColor = .gold
+        
+        starTwo.image = UIImage(systemName: "star", withConfiguration: config)
+        starTwo.tintColor = .gold
+        
+        starThree.image = UIImage(systemName: "star", withConfiguration: config)
+        starThree.tintColor = .gold
+        
+        starFour.image = UIImage(systemName: "star", withConfiguration: config)
+        starFour.tintColor = .gold
+        
+        starFive.image = UIImage(systemName: "star", withConfiguration: config)
+        starFive.tintColor = .gold
+        
+        
+        popUpView.addSubview(title)
+        popUpView.addSubview(rating)
+        popUpView.addSubview(reviewDes)
+        popUpView.addSubview(cancelButton)
+        popUpView.addSubview(starOne)
+        popUpView.addSubview(starTwo)
+        popUpView.addSubview(starThree)
+        popUpView.addSubview(starFour)
+        popUpView.addSubview(starFive)
+        addSubview(popUpView)
+        
+        popUpView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            popUpView.widthAnchor.constraint(equalToConstant: 350),
+            popUpView.heightAnchor.constraint(equalToConstant: 450),
+            popUpView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            popUpView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
+        
+        title.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            title.centerXAnchor.constraint(equalTo: popUpView.centerXAnchor),
+            title.topAnchor.constraint(equalTo: popUpView.topAnchor, constant: 20),
+            title.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        rating.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            rating.leadingAnchor.constraint(equalTo: popUpView.leadingAnchor, constant: 10),
+            rating.widthAnchor.constraint(equalToConstant: 70),
+            rating.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
+            rating.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        starOne.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            starOne.leadingAnchor.constraint(equalTo: rating.trailingAnchor, constant: 5),
+            starOne.widthAnchor.constraint(equalToConstant: 20),
+            starOne.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20),
+            starOne.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        starTwo.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            starTwo.leadingAnchor.constraint(equalTo: starOne.trailingAnchor, constant: 0),
+            starTwo.widthAnchor.constraint(equalToConstant: 20),
+            starTwo.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20),
+            starTwo.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        starThree.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            starThree.leadingAnchor.constraint(equalTo: starTwo.trailingAnchor, constant: 0),
+            starThree.widthAnchor.constraint(equalToConstant: 20),
+            starThree.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20),
+            starThree.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        starFour.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            starFour.leadingAnchor.constraint(equalTo: starThree.trailingAnchor, constant: 0),
+            starFour.widthAnchor.constraint(equalToConstant: 20),
+            starFour.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20),
+            starFour.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        starFive.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            starFive.leadingAnchor.constraint(equalTo: starFour.trailingAnchor, constant: 0),
+            starFive.widthAnchor.constraint(equalToConstant: 20),
+            starFive.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20),
+            starFive.heightAnchor.constraint(equalToConstant: 20)
+        ])
+                
+                
+        reviewDes.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            reviewDes.heightAnchor.constraint(greaterThanOrEqualToConstant: 150),
+            reviewDes.topAnchor.constraint(equalTo: rating.bottomAnchor, constant: 8),
+            reviewDes.leadingAnchor.constraint(equalTo: popUpView.leadingAnchor, constant: 15),
+            reviewDes.trailingAnchor.constraint(equalTo: popUpView.trailingAnchor, constant: -15),
+        ])
+        
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cancelButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            cancelButton.bottomAnchor.constraint(equalTo: popUpView.bottomAnchor, constant: -15),
+            cancelButton.leadingAnchor.constraint(equalTo: popUpView.leadingAnchor, constant: 15),
+            cancelButton.trailingAnchor.constraint(equalTo: popUpView.trailingAnchor, constant: -15),
+        ])
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class PopUpViewController: UIViewController {
+    
+    private let popUpWindowView = ReviewPopUp()
+    var delegate: PopUpDelegate?
+        
+    init(title: String, text: String, rating: Int, buttonText: String) {
+        super.init(nibName: nil, bundle: nil)
+        modalTransitionStyle = .crossDissolve
+        modalPresentationStyle = .overFullScreen
+        
+        popUpWindowView.title.text = title
+        popUpWindowView.reviewDes.text = text
+        popUpWindowView.rating.text = "Rating: "
+        popUpWindowView.cancelButton.setTitle(buttonText, for: .normal)
+          
+        popUpWindowView.cancelButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+            
+        view = popUpWindowView
+        
+        let config = UIImage.SymbolConfiguration(pointSize: 25)
+        for i in 1...rating {
+            if i == 1 {
+                popUpWindowView.starOne.image = UIImage(systemName: "star.fill", withConfiguration: config)
+            } else if i == 2 {
+                popUpWindowView.starTwo.image = UIImage(systemName: "star.fill", withConfiguration: config)
+            } else if i == 3 {
+                popUpWindowView.starThree.image = UIImage(systemName: "star.fill", withConfiguration: config)
+            } else if i == 4 {
+                popUpWindowView.starFour.image = UIImage(systemName: "star.fill", withConfiguration: config)
+            } else if i == 5 {
+                popUpWindowView.starFive.image = UIImage(systemName: "star.fill", withConfiguration: config)
+            }
+        }
     }
 
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func dismissView() {
+        self.delegate?.setAlphaValue()
+        self.dismiss(animated: true, completion: nil)
+    }
 }

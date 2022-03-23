@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var favoritesTable = UITableView()
+    var user: UserObject!
+    var businessArray = [BusinessObject]()
     
     var businessNames = ["Joe's Pizza", "M-Den", "Target", "No Thai", "Freddy's"," ", " ", " ", " ", " "]
     var businessCategories = ["Restaurant", "Clothing", "General", "Restaurant", "Restaurant", "Grocery", "Clothing", "Restaurant", "Something", "Something"]
@@ -26,6 +29,26 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         view.backgroundColor = .white
         
         view.addSubview(favoritesTable)
+        
+        //getFavorites()
+    }
+    
+    // get favorites for current user from firebase
+    func getFavorites() {
+        if let email = user.email {
+            let ref = Database.database().reference().child("favorites").child(email)
+            
+            ref.getData() { error, snapshot in
+                guard let dict = snapshot.value as? [String:AnyObject] else { return }
+                for i in dict.keys {
+                    if let bus = dict[i] {
+                        self.businessArray.append(BusinessObject(name: dict[i] as? String, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
+                    }
+                }
+                DispatchQueue.main.async { self.favoritesTable.reloadData() }
+            }
+        }
+        
     }
     
     
