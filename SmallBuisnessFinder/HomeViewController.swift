@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             for i in dict.keys {
                 if let bus = dict[i] {
-                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
+                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, category: bus["category"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
                 }
             }
             DispatchQueue.main.async { self.tableView.reloadData() }
@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = BusinessProfileViewController()
-        vc.business = BusinessObject(name: businessArray[indexPath.row].name, phoneNumber: businessArray[indexPath.row].phoneNumber, busDescription: businessArray[indexPath.row].busDescription, latCoord: businessArray[indexPath.row].latCoord, longCoord: businessArray[indexPath.row].longCoord, websiteLink: businessArray[indexPath.row].websiteLink, following: businessArray[indexPath.row].following, followers: businessArray[indexPath.row].followers)
+        vc.business = BusinessObject(name: businessArray[indexPath.row].name, phoneNumber: businessArray[indexPath.row].phoneNumber, busDescription: businessArray[indexPath.row].busDescription, category: businessArray[indexPath.row].category, latCoord: businessArray[indexPath.row].latCoord, longCoord: businessArray[indexPath.row].longCoord, websiteLink: businessArray[indexPath.row].websiteLink, following: businessArray[indexPath.row].following, followers: businessArray[indexPath.row].followers)
         //performSegue(withIdentifier: "detail", sender: self)
         self.navigationController?.pushViewController(vc, animated: true)
     }

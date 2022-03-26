@@ -34,7 +34,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     var websiteLink = UIButton()
     var email = UILabel()
     var tags = UILabel()
-    var business = BusinessObject(name: "Definitely a business", phoneNumber: "800-123-4567", busDescription: "Best business in the entire world", latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
+    var business = BusinessObject(name: "Definitely a business", phoneNumber: "800-123-4567", busDescription: "Best business in the entire world", category: "category", latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
     var descriptionView = UIView()
     var reviewsArray = [reviewContent]()
     
@@ -232,7 +232,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
             guard let dict = snapshot.value as? [String:AnyObject] else { return }
             for i in dict.keys {
                 if let bus = dict[i] {
-                    self.business = BusinessObject(name: dict[i] as? String, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10)
+                    self.business = BusinessObject(name: dict[i] as? String, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, category: bus["category"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10)
                 }
             }
         }

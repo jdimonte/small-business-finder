@@ -56,7 +56,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             for i in dict.keys {
                 if let bus = dict[i] {
-                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
+                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, category: bus["category"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
                 }
             }
             self.filteredBusinessArray = self.businessArray
@@ -81,7 +81,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = tableView .dequeueReusableCell(withIdentifier: "FavoriteCell", for: indexPath) as? BusinessCell
         let cell = FavoritesCell()
-        cell.initFavCell(img: UIImage(named: businessNames[indexPath.row])!, name: filteredBusinessArray[indexPath.row].name!, category: "food", location: "10 mi")
+        cell.initFavCell(img: UIImage(named: businessNames[indexPath.row])!, name: filteredBusinessArray[indexPath.row].name!, category: filteredBusinessArray[indexPath.row].category!, location: "10 mi")
         //let business = self.businessesArray[indexPath.row]
 
         return cell
@@ -94,7 +94,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = BusinessProfileViewController()
-        vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
+        vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: filteredBusinessArray[indexPath.row].busDescription, category: filteredBusinessArray[indexPath.row].category, latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
