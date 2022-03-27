@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class FavoritesCell : UITableViewCell {
     var img = UIImageView()
@@ -47,7 +49,24 @@ class FavoritesCell : UITableViewCell {
     }
     
     @objc func didTapStar(){
-        self.starButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
+        if self.starButton.currentBackgroundImage == UIImage(systemName: "star") {
+            self.starButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
+            //like business!!
+            //1) connect to user in database
+            let ref = Database.database().reference(withPath:  "users")
+            let array_ref = ref.child((Auth.auth().currentUser?.email?.safeDatabaseKey())!)
+            //2)add to array
+        } else if self.starButton.currentBackgroundImage == UIImage(systemName: "star.fill") {
+            self.starButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
+            //unlike business!!
+            //1) connect to user in database
+            let ref = Database.database().reference(withPath:  "users")
+            let array_ref = ref.child((Auth.auth().currentUser?.email?.safeDatabaseKey())!)
+            let thisPostRef = array_ref.childByAutoId //create a new post node
+            thisPostRef().setValue("here's a new post") //store the post in it
+            //let array_ref = ref.child((Auth.auth().currentUser?.email)!).child("likes")
+            //2)remove from array
+        }
     }
     
 }
