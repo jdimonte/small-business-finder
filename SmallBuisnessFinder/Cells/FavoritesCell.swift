@@ -28,21 +28,15 @@ class FavoritesCell : UITableViewCell {
         self.category.font = .systemFont(ofSize: 12)
         self.location.font = .systemFont(ofSize: 12)
         
-        var blah = false
+        self.starButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
         let usersRef = Database.database().reference(withPath:  "users")
         let array_ref = usersRef.child((Auth.auth().currentUser?.email?.safeDatabaseKey())!).child("likes")
         let queryRef = array_ref.queryOrdered(byChild: "name").queryEqual(toValue: self.name.text)
         queryRef.observeSingleEvent(of: .value, with: { (snapshot) in
             for snap in snapshot.children {
-                blah = true
+                self.starButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
             }
         })
-        if blah {
-            self.starButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
-        }
-        else{
-            self.starButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
-        }
         
         self.img.frame = CGRect(x: 5, y: 10, width: 60, height: 60)
         self.starButton.frame = CGRect(x: UIScreen.main.bounds.width - 65, y: 25, width: 30, height: 30)
