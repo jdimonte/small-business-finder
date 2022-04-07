@@ -40,6 +40,7 @@
 		E0DCA97F27DFEABA0021C7D2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DCA97E27DFEABA0021C7D2 /* SearchViewController.swift */; };
 		E0DCA98127E00ECD0021C7D2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DCA98027E00ECD0021C7D2 /* NavigationController.swift */; };
 		E0DCA98327E014220021C7D2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DCA98227E014220021C7D2 /* TabBarController.swift */; };
+		E826F5D527FE005900D345A1 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E826F5D427FE005900D345A1 /* EditProfileViewController.swift */; };
 		E8AA45D327DE844700D215C2 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AA45D227DE844700D215C2 /* FavoritesViewController.swift */; };
 		E8AA45D527DE897F00D215C2 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AA45D427DE897F00D215C2 /* FavoritesCell.swift */; };
 		E8AA45D727DE924500D215C2 /* FavoritesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AA45D627DE924500D215C2 /* FavoritesHeader.swift */; };
@@ -107,6 +108,7 @@
 		E0DCA97E27DFEABA0021C7D2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E0DCA98027E00ECD0021C7D2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		E0DCA98227E014220021C7D2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E826F5D427FE005900D345A1 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		E8AA45D227DE844700D215C2 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		E8AA45D427DE897F00D215C2 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		E8AA45D627DE924500D215C2 /* FavoritesHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHeader.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				E04FB54027D92D7D00E12D27 /* UserProfileViewController.swift */,
 				E04FB54C27D946BE00E12D27 /* BusinessLocationViewController.swift */,
 				E093B87627E2C7F200CAB52B /* SettingsViewController.swift */,
+				E826F5D427FE005900D345A1 /* EditProfileViewController.swift */,
 			);
 			path = Profiles;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				E095958C27C75A48009C75C4 /* extensions.swift in Sources */,
 				E04FB54727D93D0500E12D27 /* UserObjects.swift in Sources */,
 				E0DCA97D27DFEA3B0021C7D2 /* FiltersViewController.swift in Sources */,
+				E826F5D527FE005900D345A1 /* EditProfileViewController.swift in Sources */,
 				E0DCA97F27DFEABA0021C7D2 /* SearchViewController.swift in Sources */,
 				E04FB54927D93D5500E12D27 /* BusinessObject.swift in Sources */,
 				E04FB54D27D946BE00E12D27 /* BusinessLocationViewController.swift in Sources */,

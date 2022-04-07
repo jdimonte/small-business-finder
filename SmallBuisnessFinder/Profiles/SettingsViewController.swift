@@ -30,10 +30,10 @@ class SetttingsViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        settings.append(SettingsCell(title : "Edit User Profile", handler : testingVoid))
+        settings.append(SettingsCell(title : "Edit User Profile", handler : editProfile))
         settings.append(SettingsCell(title : "Privacy", handler : testingVoid))
         settings.append(SettingsCell(title : "Terms of Service", handler : testingVoid))
-        settings.append(SettingsCell(title : "Log Out", handler : testingVoid))
+        settings.append(SettingsCell(title : "Log Out", handler : logout))
         
         
         settingsTable.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
@@ -85,6 +85,43 @@ class SetttingsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func testingVoid(){
         print("Happy Birthday Joe")
+    }
+    
+    func logout(){
+        let actionSheet = UIAlertController(title: "Log Out", message: "Are You Sure You Want To Log Out", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { _ in
+            // then log them out
+            AuthManager.sharedAuth.logOut(completion: { success in DispatchQueue.main.async {
+                if success {
+                    // present log in screen
+                    let loginVC = LoginViewController()
+                    loginVC.modalPresentationStyle = .fullScreen
+                    self.present(loginVC, animated: true) {
+                        self.navigationController?.popToRootViewController(animated: false)
+                        self.tabBarController?.selectedIndex = 0
+                    }
+                } else {
+                    print("Problem in settings view controller, user tried to log in when not logged in.")
+                }
+            }})
+        }))
+        //actionSheet.popoverPresentationController?.sourceView = tableView
+        //actionSheet.popoverPresentationController?.sourceRect = tableView.bounds
+        present(actionSheet, animated: true)
+    }
+    
+    func termsofservice(){
+        
+    }
+    
+    func privacy(){
+        
+    }
+    
+    func editProfile(){
+        let vc = EditProfileViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
