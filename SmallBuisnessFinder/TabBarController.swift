@@ -20,7 +20,7 @@ class TabBarController: UITabBarController {
         appearance.compactInlineLayoutAppearance.normal.iconColor = .blue
         appearance.inlineLayoutAppearance.normal.iconColor = .blue
         appearance.stackedLayoutAppearance.normal.iconColor = .blue
-        //self.tabBar.barTintColor = .conquerBars
+        
         self.tabBar.tintColor = .orange
         
         self.tabBar.standardAppearance = appearance

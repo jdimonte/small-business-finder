@@ -18,6 +18,8 @@ class FiltersViewController: UIViewController {
     var dismissButton = UIButton()
     var applyFilters = UIButton()
     var delegate: searchDelegate!
+    var filters = [String]()
+    var filterButtons = [UIButton]()
     
  
     override func viewDidLoad() {
@@ -120,24 +122,33 @@ class FiltersViewController: UIViewController {
     
     func setupCategories() {
         var counter: CGFloat = 5
+        var i = 0
         for cat in categories {
             let button = UIButton(frame: CGRect(x: 25, y: 350 + counter, width: 20, height: 20))
+            button.tag = i
             let label = UILabel(frame: CGRect(x: button.frame.maxX + 5, y: 350 + counter, width: view.frame.size.width/2, height: 20))
             label.text = cat
             button.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
-            button.addTarget(self, action: #selector(didTapCategory), for: .touchUpInside)
+            button.addTarget(self, action: #selector(didTapCategory(sender:)), for: .touchUpInside)
             counter += 30
+            filterButtons.append(button)
             view.addSubview(button)
             view.addSubview(label)
-            
-            
+            i+=1
         }
-        
         applyFilters.frame = CGRect(x: view.frame.size.width/4, y: 350 + counter + 20, width: view.frame.size.width/2, height: 40)
     }
     
-    @objc func didTapCategory() {
-        
+    @objc func didTapCategory(sender: UIButton) {
+        var categoryButton = UIButton()
+        categoryButton = filterButtons[sender.tag]
+        if categoryButton.currentBackgroundImage == UIImage(systemName: "square") {
+            categoryButton.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
+            filters.append(categories[sender.tag])
+        } else {
+            categoryButton.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
+            filters.removeAll(where: { $0 == categories[sender.tag] })
+        }
     }
     
     @objc func didTapDismiss() {

@@ -48,7 +48,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                 DispatchQueue.main.async { self.favoritesTable.reloadData() }
             }
         }
-        
     }
     
     
@@ -69,6 +68,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = BusinessProfileViewController()
+        vc.isUser = false
         vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)

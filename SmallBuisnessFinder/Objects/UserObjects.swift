@@ -15,6 +15,12 @@ class UserObject {
     var profileImageLink: String?
     var profileImage: UIImage?
     var username: String?
+    
+    
+    init(name: String?, email: String?) {
+        self.name = name
+        self.email = email
+    }
 }
 
 public class UserFunctions {
@@ -26,7 +32,7 @@ public class UserFunctions {
     }
     
     static func getUserFromDefaults() -> UserObject? {
-        let user = UserObject()
+        let user = UserObject(name: "Hello", email: "bye")
         guard let name = UserDefaults.standard.value(forKey: "name") as? String else { return nil }
         user.name = name
         user.username = UserDefaults.standard.value(forKey: "username") as? String

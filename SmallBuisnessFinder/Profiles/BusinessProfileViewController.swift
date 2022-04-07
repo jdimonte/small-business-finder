@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 struct reviewContent {
     var title: String?
-    var rating: Int?
+    var rating: String?
     var reviewDescription: String?
 }
 
@@ -20,16 +20,20 @@ protocol PopUpDelegate {
     func setAlphaValue()
 }
 
-class BusinessProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PopUpDelegate {
+class BusinessProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PopUpDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    var businessNames = ["Joe's Pizza", "M-Den", "Target", "No Thai", "Freddy's"," ", " ", " ", " ", " "]
+    var businessCategories = ["Restaurant", "Clothing", "General", "Restaurant", "Restaurant", "Grocery", "Clothing", "Restaurant", "Something", "Something"]
+    var descriptions = ["Self proclaimed best pizza place in the Ann Arbor area", "Get all your U of M swag, Go Blue", "New addition to Ann Arbor", "Definitely not Thai food", "Second best pizza in the Ann Arbor area because the best was already claimed"]
     
     var businessImage = UIImageView()
     var name = UILabel()
     var busDescription = UILabel()
     var location = UIButton()
-    var numFollowers = UILabel()
+    /*var numFollowers = UILabel()
     var numFollowing = UILabel()
     var followers = UILabel()
-    var following = UILabel()
+    var following = UILabel()*/
     var phoneNumber = UILabel()
     var websiteLink = UIButton()
     var email = UILabel()
@@ -42,6 +46,22 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     
     var reviewCollection: UICollectionView!
     var coords : CLLocationCoordinate2D!
+    var isUser = true
+    
+    // user variables
+    var profileImage: UIImageView!
+    var userName: UILabel!
+    var favoritesButton: UIButton!
+    var reviewsButton: UIButton!
+    var followers: UILabel!
+    var following: UILabel!
+    var numFollowers: UILabel!
+    var numFollowing: UILabel!
+    var user = UserObject(name: "Jacqueline DiMonte", email: "awesome@gmail.com")
+    var followersButton: UIButton!
+    var followingButton: UIButton!
+    var scrollView: UIScrollView!
+    var tableView: UITableView!
     
 
     override func viewDidLoad() {
@@ -55,7 +75,12 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func runEverything() {
-        setup()
+        if isUser {
+            retrieveReviews()
+            setupUser()
+        } else {
+            setup()
+        }
     }
     
     func setup() {
@@ -90,21 +115,6 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         websiteLink.layer.masksToBounds = true
         websiteLink.setImage(UIImage(systemName: "globe", withConfiguration: config), for: .normal)
         
-        
-        /*followers.text = "Followers"
-        followers.textColor = .black
-        followers.font = .boldSystemFont(ofSize: 14)
-        numFollowers.text = "10"
-        numFollowers.textColor = .black
-        numFollowers.font = .systemFont(ofSize: 10)
-        
-        following.text = "Following"
-        following.textColor = .black
-        following.font = .boldSystemFont(ofSize: 14)
-        numFollowing.text = "10"
-        numFollowing.textColor = .black
-        numFollowing.font = .systemFont(ofSize: 10)*/
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(didTapHere))
         
         
@@ -137,7 +147,6 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         
         layoutConstraints()
     }
-    
     func layoutConstraints() {
         businessImage.translatesAutoresizingMaskIntoConstraints = false
         name.translatesAutoresizingMaskIntoConstraints = false
@@ -189,13 +198,6 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
             websiteLink.widthAnchor.constraint(equalToConstant: 150),
         ].forEach { $0.isActive = true }
     }
-    
-    @objc func didTapHere() {
-        let vc = SetttingsViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    
     @objc func didTapLocation() {
         // take user to map VC and display the location(s) of their business
         let vc = BusinessLocationViewController()
@@ -205,7 +207,6 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         vc.coords = self.coords
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
     @objc func didTapWebsite() {
         // take user to the business's website
         let url = URL(string: "https://www.joespizzanycmenu.com/") // business.websiteLink
@@ -215,13 +216,199 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         let vc = SFSafariViewController(url: websiteURL)
         present(vc, animated: true, completion: nil)
     }
-    
     @objc func didTapFavorite() {
         if favorite.currentBackgroundImage == UIImage(systemName: "star") {
             favorite.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
         } else if favorite.currentBackgroundImage == UIImage(systemName: "star.fill") {
             favorite.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
         }
+    }
+    @objc func didTapHere() {
+        let vc = SetttingsViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setupUser() {
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(didTapHere))
+        
+        profileImage = UIImageView()
+        profileImage.image = UIImage(named: "Joe's Pizza")
+        profileImage.layer.cornerRadius = 50
+        profileImage.layer.masksToBounds = true
+        
+        name = UILabel()
+        name.text = user.name
+        name.font = .boldSystemFont(ofSize: 20)
+        name.textAlignment = .center
+        
+        following = UILabel()
+        following.text = "Following"
+        following.font = .boldSystemFont(ofSize: 18)
+        
+        followers = UILabel()
+        followers.text = "Followers"
+        followers.font = .boldSystemFont(ofSize: 18)
+        
+        numFollowing = UILabel()
+        numFollowing.text = "15"
+        numFollowing.font = .systemFont(ofSize: 16)
+        
+        numFollowers = UILabel()
+        numFollowers.text = "10"
+        numFollowers.font = .systemFont(ofSize: 16)
+        
+        
+        favoritesButton = UIButton()
+        reviewsButton = UIButton()
+        favoritesButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
+        reviewsButton.setBackgroundImage(UIImage(systemName: "list.bullet.rectangle.fill"), for: .normal)
+        favoritesButton.addTarget(self, action: #selector(didPressFavorites), for: .touchUpInside)
+        reviewsButton.addTarget(self, action: #selector(didPressReviews), for: .touchUpInside)
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: view.frame.size.width/2 - 20, height: 200)
+        reviewCollection = UICollectionView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 400), collectionViewLayout: layout) // 425
+        reviewCollection.delegate = self
+        reviewCollection.dataSource = self
+        reviewCollection?.register(reviewCell.self, forCellWithReuseIdentifier: "MyCell")
+        
+        followersButton = UIButton()
+        followersButton.addTarget(self, action: #selector(didTapFollowers), for: .touchUpInside)
+        
+        followingButton = UIButton()
+        followingButton.addTarget(self, action: #selector(didTapFollowing), for: .touchUpInside)
+        
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 375, width: view.frame.size.width, height: view.frame.size.height - 375))
+        scrollView.addSubview(reviewCollection)
+        
+        
+        tableView = UITableView(frame: CGRect(x: view.frame.size.width, y: 0, width: view.frame.size.width, height: view.frame.size.height - 375))
+        tableView.delegate = self
+        tableView.dataSource = self
+        scrollView.addSubview(tableView)
+        
+        view.addSubview(scrollView)
+        
+        //view.addSubview(reviewCollection)
+        view.addSubview(profileImage)
+        view.addSubview(name)
+        view.addSubview(favoritesButton)
+        view.addSubview(reviewsButton)
+        view.addSubview(followers)
+        view.addSubview(following)
+        view.addSubview(numFollowers)
+        view.addSubview(numFollowing)
+        view.addSubview(followingButton)
+        view.addSubview(followersButton)
+        
+        layoutUserConstraints()
+    }
+    func layoutUserConstraints() {
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        name.translatesAutoresizingMaskIntoConstraints = false
+        favoritesButton.translatesAutoresizingMaskIntoConstraints = false
+        reviewsButton.translatesAutoresizingMaskIntoConstraints = false
+        followers.translatesAutoresizingMaskIntoConstraints = false
+        following.translatesAutoresizingMaskIntoConstraints = false
+        numFollowers.translatesAutoresizingMaskIntoConstraints = false
+        numFollowing.translatesAutoresizingMaskIntoConstraints = false
+        followingButton.translatesAutoresizingMaskIntoConstraints = false
+        followersButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        [
+            profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profileImage.widthAnchor.constraint(equalToConstant: 100),
+            profileImage.heightAnchor.constraint(equalToConstant: 100),
+            
+            name.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
+            name.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            name.heightAnchor.constraint(equalToConstant: 30),
+            name.widthAnchor.constraint(equalToConstant: 300),
+            
+            followers.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 20),
+            followers.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.size.width/4 - 40),
+            followers.heightAnchor.constraint(equalToConstant: 30),
+            followers.widthAnchor.constraint(equalToConstant: 100),
+            
+            following.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 20),
+            following.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width/4 + 40)),
+            following.heightAnchor.constraint(equalToConstant: 30),
+            following.widthAnchor.constraint(equalToConstant: 100),
+            
+            numFollowers.topAnchor.constraint(equalTo: followers.bottomAnchor, constant: 5),
+            numFollowers.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.size.width/4 - 10),
+            numFollowers.heightAnchor.constraint(equalToConstant: 30),
+            numFollowers.widthAnchor.constraint(equalToConstant: 100),
+            
+            numFollowing.topAnchor.constraint(equalTo: following.bottomAnchor, constant: 5),
+            numFollowing.leadingAnchor.constraint(equalTo: numFollowers.trailingAnchor, constant: view.frame.size.width/4 + 5),
+            numFollowing.heightAnchor.constraint(equalToConstant: 30),
+            numFollowing.widthAnchor.constraint(equalToConstant: 100),
+            
+            followersButton.topAnchor.constraint(equalTo: followers.topAnchor, constant: 10),
+            followersButton.leadingAnchor.constraint(equalTo: followers.leadingAnchor, constant: 10),
+            followersButton.trailingAnchor.constraint(equalTo: followers.trailingAnchor, constant: 10),
+            followersButton.bottomAnchor.constraint(equalTo: numFollowers.bottomAnchor, constant: 10),
+            
+            followingButton.topAnchor.constraint(equalTo: following.topAnchor, constant: 10),
+            followingButton.leadingAnchor.constraint(equalTo: following.leadingAnchor, constant: 10),
+            followingButton.trailingAnchor.constraint(equalTo: following.trailingAnchor, constant: 10),
+            followingButton.bottomAnchor.constraint(equalTo: numFollowing.bottomAnchor, constant: 10),
+            
+            reviewsButton.bottomAnchor.constraint(equalTo: reviewCollection.topAnchor, constant: -10),
+            reviewsButton.centerXAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width/4),
+            reviewsButton.heightAnchor.constraint(equalToConstant: 30),
+            reviewsButton.widthAnchor.constraint(equalToConstant: 30),
+            
+            favoritesButton.bottomAnchor.constraint(equalTo: reviewCollection.topAnchor, constant: -10),
+            favoritesButton.centerXAnchor.constraint(equalTo: view.trailingAnchor, constant: -UIScreen.main.bounds.width/4),
+            favoritesButton.heightAnchor.constraint(equalToConstant: 30),
+            favoritesButton.widthAnchor.constraint(equalToConstant: 30),
+        
+        ].forEach { $0.isActive = true }
+    }
+    @objc func didPressFavorites() {
+        favoritesButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
+        reviewsButton.setBackgroundImage(UIImage(systemName: "list.bullet.rectangle"), for: .normal)
+        // display the favorites for the user
+        scrollView.setContentOffset(CGPoint(x: view.frame.size.width, y: 0), animated: true)
+        
+    }
+    @objc func didPressReviews() {
+        reviewsButton.setBackgroundImage(UIImage(systemName: "list.bullet.rectangle.fill"), for: .normal)
+        favoritesButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
+        // display the reviews for the user
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    @objc func didTapFollowers() {
+        let vc = FollowingViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc func didTapFollowing() {
+        let vc = FollowingViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = FavoritesCell()
+        cell.initFavCell(img: UIImage(named: businessNames[indexPath.row])!, name: businessNames[indexPath.row], category: businessCategories[indexPath.row], location: "Ann Arbor, Michigan")
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let vc = BusinessProfileViewController()
+        vc.isUser = false
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -239,20 +426,38 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func retrieveReviews() {
-        if let email = business.email {
-            let ref = Database.database().reference(withPath: "reviews").child(email)
-            
-            ref.getData() { error, snapshot in
-                guard let dict = snapshot.value as? [String:AnyObject] else { return }
-                for i in dict.keys {
-                    if let bus = dict[i] {
-                        self.reviewsArray.append(reviewContent(title: dict[i] as? String, rating: bus["rating"] as? Int, reviewDescription: bus["description"] as? String))
+        if isUser {
+            // get the reviews the user has left
+            //if let user = UserFunctions.getUserFromDefaults() {
+                //if let email = user.email {
+            let email = "jdimonte-umich-edu"
+                    let ref = Database.database().reference(withPath: "reviews").child(email)
+                    
+                    ref.getData() { error, snapshot in
+                        guard let dict = snapshot.value as? [String:AnyObject] else { return }
+                        for i in dict.keys {
+                            if let bus = dict[i] {
+                                self.reviewsArray.append(reviewContent(title: dict[i] as? String, rating: bus["rating"] as? String, reviewDescription: bus["description"] as? String))
+                            }
+                        }
+                        DispatchQueue.main.async { self.reviewCollection.reloadData() }
+                    }
+                //}
+            //}
+        } else {
+            if let email = business.email {
+                let ref = Database.database().reference(withPath: "reviews").child(email)
+                
+                ref.getData() { error, snapshot in
+                    guard let dict = snapshot.value as? [String:AnyObject] else { return }
+                    for i in dict.keys {
+                        if let bus = dict[i] {
+                            self.reviewsArray.append(reviewContent(title: dict[i] as? String, rating: bus["rating"] as? String, reviewDescription: bus["description"] as? String))
+                        }
                     }
                 }
             }
         }
-        
-        
         // get the reviews for the specific business and store them in reviewsArray
     }
     
@@ -267,8 +472,13 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = reviewCollection.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! reviewCell
         
-        // static content for now, will fill in with review data from the reviewsArray
-        cell.reviewCellInit(title: "Great Business", rating: "5", descrip: "really friendly staff, super helpful. Felt right at home the entire time. Would definitely recommend to friends")
+        if self.reviewsArray.count > 0 {
+            cell.reviewCellInit(title: reviewsArray[indexPath.row].title ?? "Great Company", rating: reviewsArray[indexPath.row].rating ?? "5", descrip: reviewsArray[indexPath.row].reviewDescription ?? "This couldn't be better")
+        } else {
+            // static content for now, will fill in with review data from the reviewsArray
+            cell.reviewCellInit(title: "Great Business", rating: "5", descrip: "really friendly staff, super helpful. Felt right at home the entire time. Would definitely recommend to friends")
+        }
+
         cell.backgroundColor = UIColor.black
         cell.layer.cornerRadius = 10
         cell.layer.masksToBounds = true
@@ -284,6 +494,8 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.view.alpha = 0.5
+        
+        // PopUpViewController(title: reviewsArray[indexPath.row].title, text: reviewsArray[indexPath.row].reviewDescription, rating: reviewsArray[indexPath.row].rating, buttonText: "Close")
         let vc = PopUpViewController(title: "Great Business", text: "really friendly staff, super helpful. Felt right at home the entire time. Would definitely recommend to friends", rating: 5, buttonText: "Close")
         vc.delegate = self
         self.present(vc, animated: true)
@@ -343,16 +555,12 @@ private class ReviewPopUp: UIView {
         let config = UIImage.SymbolConfiguration(pointSize: 25)
         starOne.image = UIImage(systemName: "star", withConfiguration: config)
         starOne.tintColor = .gold
-        
         starTwo.image = UIImage(systemName: "star", withConfiguration: config)
         starTwo.tintColor = .gold
-        
         starThree.image = UIImage(systemName: "star", withConfiguration: config)
         starThree.tintColor = .gold
-        
         starFour.image = UIImage(systemName: "star", withConfiguration: config)
         starFour.tintColor = .gold
-        
         starFive.image = UIImage(systemName: "star", withConfiguration: config)
         starFive.tintColor = .gold
         
