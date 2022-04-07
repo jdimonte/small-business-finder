@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol searchDelegate {
-    func didApplyFilters()
+    func didApplyFilters(filters: Filters)
 }
 enum searchSettings {
      case businesses, users
@@ -28,6 +29,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var segmentControl: UISegmentedControl!
     var selectionBar: UIView!
     var counter = 0
+    var appliedFilters = false
     
     var businessNames = ["Joe's Pizza", "M-Den", "Target", "No Thai", "Freddy's"," ", " ", " ", " ", " "]
     var businessCategories = ["Restaurant", "Clothing", "General", "Restaurant", "Restaurant", "Grocery", "Clothing", "Restaurant", "Something", "Something"]
@@ -62,12 +64,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        counter = 0
-        searchBar.text = ""
-        searchSettings = .businesses
-        segmentControl.selectedSegmentIndex = 0
-        selectionBar.frame.origin.x = 0
-        tableView.reloadData()
+        if !appliedFilters {
+            counter = 0
+            searchBar.text = ""
+            searchSettings = .businesses
+            segmentControl.selectedSegmentIndex = 0
+            selectionBar.frame.origin.x = 0
+            tableView.reloadData()
+        }
     }
     
     func setup() {
@@ -156,7 +160,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func didApplyFilters() {
+    func didApplyFilters(filters: Filters) {
+        appliedFilters = true
         counter = 5
         tableView.reloadData()
     }

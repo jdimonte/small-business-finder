@@ -6,6 +6,13 @@
 //
 
 import UIKit
+import CoreLocation
+
+public struct Filters {
+    var location: CLLocationCoordinate2D?
+    var radius: Int?
+    var categories: [String]?
+}
  
 class FiltersViewController: UIViewController {
     
@@ -20,6 +27,7 @@ class FiltersViewController: UIViewController {
     var delegate: searchDelegate!
     var filters = [String]()
     var filterButtons = [UIButton]()
+    var appliedFilters = Filters(location: nil, radius: nil, categories: nil)
     
  
     override func viewDidLoad() {
@@ -39,6 +47,9 @@ class FiltersViewController: UIViewController {
         distanceLabel.text = "Radius"
         distanceLabel.textColor = .black
         distanceLabel.font = .boldSystemFont(ofSize: 20)
+        
+        self.distance.minimumValue = 1
+        self.distance.maximumValue = 100
         
         categoriesLabel.text = "Products"
         categoriesLabel.textColor = .black
@@ -149,6 +160,7 @@ class FiltersViewController: UIViewController {
             categoryButton.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
             filters.removeAll(where: { $0 == categories[sender.tag] })
         }
+        
     }
     
     @objc func didTapDismiss() {
@@ -157,7 +169,9 @@ class FiltersViewController: UIViewController {
     }
     
     @objc func applyFilter() {
-        delegate.didApplyFilters()
+        appliedFilters.categories = filters
+        appliedFilters.radius = Int(distance.value.rounded())
+        delegate.didApplyFilters(filters: appliedFilters)
         navigationController?.popViewController(animated: true)
     }
     
