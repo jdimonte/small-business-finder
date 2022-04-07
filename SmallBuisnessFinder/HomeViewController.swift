@@ -7,12 +7,14 @@
 
 import UIKit
 import FirebaseDatabase
+import CoreLocation
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     var businessNames = ["Joe's Pizza", "M-Den", "Target", "No Thai", "Freddy's"," ", " ", " ", " ", " "]
     var businessCategories = ["Restaurant", "Clothing", "General", "Restaurant", "Restaurant", "Grocery", "Clothing", "Restaurant", "Something", "Something"]
     var descriptions = ["Self proclaimed best pizza place in the Ann Arbor area", "Get all your U of M swag, Go Blue", "New addition to Ann Arbor", "Definitely not Thai food", "Second best pizza in the Ann Arbor area because the best was already claimed"]
+    var dist = 0.0
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -23,6 +25,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+
+        // Request user location
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestLocation()
+
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -39,6 +48,28 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
+        if let location = locations.first {
+            let otherLocation = CLLocation(latitude: 42, longitude: -83)
+            self.dist = location.distance(from: otherLocation)
+            print(self.dist)
+            self.tableView.reloadData()
+            
+        }
+    }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
+        //in failure condition, atm nothing happens
+        //TODO : set up a boolean for whether we have user location or not
+    }
+    
     
     func fetchBusinesses() {
         //make array of businesses
@@ -130,7 +161,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell?.businessImage.image = UIImage(named: businessNames[indexPath.row])!
         cell?.businessName.text = businessArray[indexPath.row].name
         cell?.businessDescription.text = businessArray[indexPath.row].busDescription
-        cell?.businessDistance.text = "10 mi"
+        cell?.businessDistance.text = String(self.dist)
 
         return cell!
     }
