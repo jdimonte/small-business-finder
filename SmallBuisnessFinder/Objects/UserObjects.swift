@@ -15,6 +15,7 @@ class UserObject {
     var profileImageLink: String?
     var profileImage: UIImage?
     var username: String?
+    var phoneNumber: String?
     
     
     init(name: String?, email: String?) {
