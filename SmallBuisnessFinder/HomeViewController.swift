@@ -9,6 +9,14 @@ import UIKit
 import FirebaseDatabase
 import CoreLocation
 
+// Jackson MI
+// lat: 42.2459
+// long: -84.4013
+
+// New york
+// lat:
+// long:
+
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     var businessNames = ["Joe's Pizza", "M-Den", "Target", "No Thai", "Freddy's"," ", " ", " ", " ", " "]
@@ -55,7 +63,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     ) {
         if let location = locations.first {
             let otherLocation = CLLocation(latitude: 42, longitude: -83)
-            self.dist = location.distance(from: otherLocation)
+            self.dist = location.distance(from: otherLocation)/1600.0
             print(self.dist)
             self.tableView.reloadData()
             
