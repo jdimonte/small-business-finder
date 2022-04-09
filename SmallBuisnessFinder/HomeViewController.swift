@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var businessNames = ["Joe's Pizza", "M-Den", "Target", "No Thai", "Freddy's"," ", " ", " ", " ", " "]
     var businessCategories = ["Restaurant", "Clothing", "General", "Restaurant", "Restaurant", "Grocery", "Clothing", "Restaurant", "Something", "Something"]
     var descriptions = ["Self proclaimed best pizza place in the Ann Arbor area", "Get all your U of M swag, Go Blue", "New addition to Ann Arbor", "Definitely not Thai food", "Second best pizza in the Ann Arbor area because the best was already claimed"]
-    var dist = 0.0
+    var userLocation : CLLocation?
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -62,9 +62,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         didUpdateLocations locations: [CLLocation]
     ) {
         if let location = locations.first {
-            let otherLocation = CLLocation(latitude: 42, longitude: -83)
-            self.dist = location.distance(from: otherLocation)/1600.0
-            print(self.dist)
+            userLocation = location
+//            self.dist = round(location.distance(from: otherLocation)/1600.0*10)/10.0
             self.tableView.reloadData()
             
         }
@@ -89,10 +88,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             for i in dict.keys {
                 if let bus = dict[i] {
-                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
+                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: Int.random(in: -90..<91), longCoord: Int.random(in: -180..<181), websiteLink: bus["website"] as? String, following: 10, followers: 10))
                 }
             }
+            
             DispatchQueue.main.async { self.tableView.reloadData() }
+            
         }
        
         self.tableView.reloadData()
@@ -163,14 +164,42 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as? BusinessCell
         //let business = self.businessesArray[indexPath.row]
         cell?.businessImage.image = UIImage(named: businessNames[indexPath.row])!
         cell?.businessName.text = businessArray[indexPath.row].name
         cell?.businessDescription.text = businessArray[indexPath.row].busDescription
-        cell?.businessDistance.text = String(self.dist)
-
+        var otherLocation : CLLocation?
+        if let businessLat = businessArray[indexPath.row].latCoord {
+            if let businessLong = businessArray[indexPath.row].longCoord{
+                otherLocation = CLLocation(latitude: Double(businessLat), longitude: Double(businessLong))
+            }
+        }
+        if let UL = self.userLocation, let OL = otherLocation {
+            let dist = round(UL.distance(from: OL)/1600.0*10)/10.0
+            cell?.businessDistance.text = String(dist)
+        }else{
+            if let OL = otherLocation {
+                var area : CLPlacemark!
+                let cityFinder = CLGeocoder()
+                cityFinder.reverseGeocodeLocation(OL, completionHandler: { (placemarks, error) in
+                    if error == nil, let placemark = placemarks, !placemark.isEmpty {
+                        area = placemark.last
+                        if let text = area.locality {
+                            cell?.businessDistance.text = text
+                        }else if let text = area.country {
+                            cell?.businessDistance.text = text
+                        }else{
+                            cell?.businessDistance.text = "Location Unknown"
+                        }
+                    }
+                })
+            }else{
+                cell?.businessDistance.text = ""
+            }
+        }
         return cell!
     }
     

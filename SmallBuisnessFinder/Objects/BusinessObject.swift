@@ -14,6 +14,7 @@ class BusinessObject {
     var name: String?
     var phoneNumber: String?
     var busDescription: String?
+    // Consider changing Int type cariable to Double for better accuracy
     var latCoord: Int?
     var longCoord: Int?
     var websiteLink: String?
