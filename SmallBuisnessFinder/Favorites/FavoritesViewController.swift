@@ -42,7 +42,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                 guard let dict = snapshot.value as? [String:AnyObject] else { return }
                 for i in dict.keys {
                     if let bus = dict[i] {
-                        self.businessArray.append(BusinessObject(name: dict[i] as? String, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
+                        self.businessArray.append(BusinessObject(name: dict[i] as? String, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, category: bus["category"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
                     }
                 }
                 DispatchQueue.main.async { self.favoritesTable.reloadData() }
@@ -68,8 +68,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = BusinessProfileViewController()
-        vc.isUser = false
-        vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
+        vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], category: "category", latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import FirebaseDatabase
 
 protocol searchDelegate {
     func didApplyFilters(filters: Filters)
@@ -24,6 +25,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var searchBar = UISearchBar()
     var searchSettings: searchSettings = .businesses
+    var businessArray = [BusinessObject]()
+    var filteredBusinessArray = [BusinessObject]()
     private var businesses = [BusinessObject]()
     
     var segmentControl: UISegmentedControl!
@@ -52,6 +55,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         tableView.dataSource = self
         tableView.delegate = self
+        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BusinessCell")
         
         scrollView.addSubview(tableView)
         
@@ -61,6 +65,26 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         scrollView.addSubview(usersTableView)
         
         setup()
+        fetchBusinesses()
+
+    }
+    
+    func fetchBusinesses() {
+        //make array of businesses
+        
+        let ref = Database.database().reference(withPath: "businesses")
+        
+        ref.getData() { error, snapshot in
+            guard let dict = snapshot.value as? [String:AnyObject] else { return }
+            
+            for i in dict.keys {
+                if let bus = dict[i] {
+                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, category: bus["category"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
+                }
+            }
+            self.filteredBusinessArray = self.businessArray
+            DispatchQueue.main.async { self.tableView.reloadData() }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,7 +127,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return counter
+        if filteredBusinessArray.count == 0 {
+            return 0
+        } else {
+            return filteredBusinessArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -141,6 +169,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if (searchText.count != 0) {
+            filteredBusinessArray = businessArray.filter { $0.name!.range(of: searchText, options: .caseInsensitive) != nil }
+        }
+        else {
+            filteredBusinessArray = businessArray;
+        }
+        
+        tableView.reloadData()
+        
+        
         if searchText.count >= 3 {
             counter = Int.random(in: 0...5)
             switch searchSettings {
