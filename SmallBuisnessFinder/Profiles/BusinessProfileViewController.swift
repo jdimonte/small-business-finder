@@ -57,7 +57,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     var following: UILabel!
     var numFollowers: UILabel!
     var numFollowing: UILabel!
-    var user = UserObject(name: "Jacqueline DiMonte", email: "awesome@gmail.com")
+    var user = UserObject(name: "Wilson Chiu", email: "joe-wentz-gmail-com", username: nil, phoneNumber: nil)
     var followersButton: UIButton!
     var followingButton: UIButton!
     var scrollView: UIScrollView!
@@ -224,7 +224,8 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         }
     }
     @objc func didTapHere() {
-        let vc = SetttingsViewController()
+        //let vc = SetttingsViewController()
+        let vc = ReviewViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

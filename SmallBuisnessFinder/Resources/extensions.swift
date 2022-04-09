@@ -27,6 +27,14 @@ extension UIColor {
     static var gold = UIColor(displayP3Red: 255/255, green: 215/255, blue: 0/255, alpha: 1)
 }
 
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+}
+
 class ClearSegmentedControl: UISegmentedControl {
     override init(items: [Any]?) {
         super.init(items: items)

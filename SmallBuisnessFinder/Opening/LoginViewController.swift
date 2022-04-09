@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
 
@@ -33,6 +34,13 @@ class LoginViewController: UIViewController {
         AuthManager.sharedAuth.loginUser(email: username, password: password) { success in
             if success {
                 // user logged in
+                let safeKey = username.safeDatabaseKey()
+                let ref = Database.database().reference(withPath: "users").child(safeKey)
+                ref.getData() { errror, snapshot in
+                    guard let dict = snapshot.value as? [String:AnyObject] else { return }
+                    let user = UserObject(name: dict["name"] as? String, email: username, username: dict["username"] as? String, phoneNumber: dict["number"] as? String)
+                    UserFunctions.saveUserToDefaults(user: user)
+                }
                 self.performSegue(withIdentifier: "login", sender: self)
             }
             else {

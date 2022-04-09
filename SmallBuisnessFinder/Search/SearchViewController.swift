@@ -35,7 +35,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var businessCategories = ["Restaurant", "Clothing", "General", "Restaurant", "Restaurant", "Grocery", "Clothing", "Restaurant", "Something", "Something"]
     var descriptions = ["Self proclaimed best pizza place in the Ann Arbor area", "Get all your U of M swag, Go Blue", "New addition to Ann Arbor", "Definitely not Thai food", "Second best pizza in the Ann Arbor area because the best was already claimed"]
     
-    var users = [UserObject(name: "James Veitch", email: "james.vietch@gmail.com"), UserObject(name: "James Veitch", email: "james.vietch@gmail.com"), UserObject(name: "James Veitch", email: "james.vietch@gmail.com"), UserObject(name: "James Veitch", email: "james.vietch@gmail.com"), UserObject(name: "James Veitch", email: "james.vietch@gmail.com")]
+    var users = [UserObject(name: "James Veitch", email: "james.vietch@gmail.com", username: nil, phoneNumber: nil), UserObject(name: "James Veitch", email: "james.vietch@gmail.com", username: nil, phoneNumber: nil), UserObject(name: "James Veitch", email: "james.vietch@gmail.com", username: nil, phoneNumber: nil), UserObject(name: "James Veitch", email: "james.vietch@gmail.com", username: nil, phoneNumber: nil), UserObject(name: "James Veitch", email: "james.vietch@gmail.com", username: nil, phoneNumber: nil)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
