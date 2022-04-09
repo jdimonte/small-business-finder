@@ -139,7 +139,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch searchSettings {
         case .businesses:
             let cell = FavoritesCell()
-            cell.initFavCell(img: UIImage(named: businessNames[indexPath.row])!, name: businessNames[indexPath.row], category: businessCategories[indexPath.row], location: "Ann Arbor, MI")
+            cell.initFavCell(img: UIImage(named: businessNames[indexPath.row])!, name: filteredBusinessArray[indexPath.row].name!, category: filteredBusinessArray[indexPath.row].category!, location: "Ann Arbor, MI")
             return cell
         case .users:
             let cell = UserCell()
@@ -159,7 +159,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch searchSettings {
         case .businesses:
             vc.isUser = false
-            vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
+            vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: filteredBusinessArray[indexPath.row].busDescription!, category: filteredBusinessArray[indexPath.row].category!, latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
         case .users:
             vc.isUser = true
             vc.user = users[indexPath.row]
