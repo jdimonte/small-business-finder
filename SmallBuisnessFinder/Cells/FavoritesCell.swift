@@ -16,6 +16,7 @@ class FavoritesCell : UITableViewCell {
     var name = UILabel()
     var category = UILabel()
     var location = UILabel()
+    var view = UIView() //added
     
     func initFavCell(img : UIImage, name : String, category : String, location : String){
         self.img.image = img
@@ -49,11 +50,23 @@ class FavoritesCell : UITableViewCell {
         
         self.starButton.addTarget(self, action: #selector(didTapStar), for: .touchUpInside)
         
+        //added
+        self.backgroundColor = UIColor(named: "purple")
+        self.view.backgroundColor = UIColor.white
+        self.view.layer.cornerRadius = 0.05 * self.view.bounds.size.width
+        view.addSubview(self.img)
+        view.addSubview(self.starButton)
+        view.addSubview(self.name)
+        view.addSubview(self.category)
+        view.addSubview(self.location)
+        contentView.addSubview(self.view)
+        /*
         contentView.addSubview(self.img)
         contentView.addSubview(self.starButton)
         contentView.addSubview(self.name)
         contentView.addSubview(self.category)
         contentView.addSubview(self.location)
+        */
     }
     
     @objc func didTapStar(){

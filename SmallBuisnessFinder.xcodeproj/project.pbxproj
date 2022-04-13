@@ -319,6 +319,7 @@
 				51BDA84927C6AE00000395B2 /* Frameworks */,
 				51BDA84A27C6AE00000395B2 /* Resources */,
 				1C3773BFDA0F31515A252DDF /* [CP] Embed Pods Frameworks */,
+				58ADBE1FF661EA6FED6371BB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -357,6 +358,7 @@
 				51BDA86A27C6AE04000395B2 /* Frameworks */,
 				51BDA86B27C6AE04000395B2 /* Resources */,
 				C212A4EE0DE690329CAFE547 /* [CP] Embed Pods Frameworks */,
+				0AB09C360029A04BEBABC31F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -439,6 +441,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0AB09C360029A04BEBABC31F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests/Pods-SmallBuisnessFinder-SmallBuisnessFinderUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		10168E0A322A6F5A807E8E71 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -520,6 +539,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58ADBE1FF661EA6FED6371BB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmallBuisnessFinder/Pods-SmallBuisnessFinder-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmallBuisnessFinder/Pods-SmallBuisnessFinder-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmallBuisnessFinder/Pods-SmallBuisnessFinder-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C212A4EE0DE690329CAFE547 /* [CP] Embed Pods Frameworks */ = {

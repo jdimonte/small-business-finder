@@ -50,6 +50,8 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
         
         navigationController?.title = "Profile"
         
+        self.view.backgroundColor = UIColor(named: "purple") //added
+        
         retrieveData()
         runEverything()
     }

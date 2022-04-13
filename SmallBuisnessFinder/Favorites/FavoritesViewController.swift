@@ -25,8 +25,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         favoritesTable.dataSource = self
 
         favoritesTable.tableHeaderView = FavoritesHeader(frame : CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200))
-         
-        view.backgroundColor = .white
+        
+        favoritesTable.backgroundColor = UIColor(named: "purple") //added
+        self.view.backgroundColor = UIColor(named: "purple") //added
         
         view.addSubview(favoritesTable)
         

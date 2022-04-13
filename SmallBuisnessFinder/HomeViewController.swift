@@ -25,6 +25,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        //added
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.tableView.backgroundColor = UIColor(named: "purple")
         //let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 
         //view.addGestureRecognizer(tap)

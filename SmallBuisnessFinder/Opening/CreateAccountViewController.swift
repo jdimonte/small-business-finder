@@ -63,6 +63,8 @@ class CreateAccountViewController: UIViewController {
     func setup() {
         password.isSecureTextEntry = true
         confirmPassword.isSecureTextEntry = true
+        createAccount.layer.cornerRadius = 0.05 * createAccount.bounds.size.width //added
+
     }
     
     func checkInputs() -> Bool {

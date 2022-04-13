@@ -12,6 +12,7 @@ target 'SmallBuisnessFinder' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Storage'
+  pod 'GoogleSignIn', '~> 5.0.2'
 
   target 'SmallBuisnessFinderTests' do
     inherit! :search_paths

@@ -41,6 +41,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         view.addSubview(tableView)
         
+        self.view.backgroundColor = UIColor(named: "purple") //added
+        
         setup()
         fetchBusinesses()
 
