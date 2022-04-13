@@ -153,6 +153,8 @@ class CreateBusinessProfileViewController: UIViewController {
                     print("OOOHHHH GOOD LORD PWEASE SAVE MWEEEEEEEEE")
                 }
             }
+            print(coordinates?.coordinate.latitude)
+            print(coordinates?.coordinate.longitude)
             
             AuthManager.sharedAuth.newBusiness(name: name, email: email, password: password, username: username, phoneNumber: phoneNumber.text ?? "", websiteLink: websiteLink.text ?? nil, latCoord: coordinates?.coordinate.latitude ?? nil, longCoord: coordinates?.coordinate.longitude ?? nil) { didRegister in
                 // possibly need to put the registration on a separte thread
@@ -170,7 +172,7 @@ class CreateBusinessProfileViewController: UIViewController {
     func checkInputs() -> Bool {
         
         
-        return false
+        return true
     }
 
 }

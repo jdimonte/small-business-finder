@@ -226,8 +226,8 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     @objc func didTapHere() {
         //let vc = SetttingsViewController()
         //let vc = ReviewViewController()
-        //let vc = CreateBusinessProfileViewController()
-        let vc = LaunchScreenViewController()
+        let vc = CreateBusinessProfileViewController()
+        //let vc = LaunchScreenViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
