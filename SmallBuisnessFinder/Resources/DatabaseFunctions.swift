@@ -35,4 +35,17 @@ public class DatabaseFunctions {
             }
         }
     }
+    
+    public func insertNewBusiness(with email: String, name: String, username: String, number: String, website: String, latCoord: Double, longCoord: Double, category: String, busDescription: String, completion: @escaping (Bool) -> Void) {
+        let safeKey = email.safeDatabaseKey()
+        database.child("businesses").child(safeKey).setValue(["name": name, "username": username, "number": number, "website": website, "latCoord": latCoord, "longCoord": longCoord, "category": category, "description": busDescription]) { error, _ in
+            if error == nil {
+                completion(true)
+                return
+            } else {
+                completion(false)
+                return
+            }
+        }
+    }
 }

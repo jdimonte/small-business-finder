@@ -29,6 +29,7 @@
 		E04FB54D27D946BE00E12D27 /* BusinessLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FB54C27D946BE00E12D27 /* BusinessLocationViewController.swift */; };
 		E070AF1C27E260E800203180 /* BuisnessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E070AF1B27E260E800203180 /* BuisnessCell.swift */; };
 		E070AF1E27E2619B00203180 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E070AF1D27E2619B00203180 /* HomeViewController.swift */; };
+		E077E12628029CBB006A73F2 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E077E12528029CBB006A73F2 /* LaunchScreenViewController.swift */; };
 		E07D78C327DD4EEF002CAE72 /* reviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07D78C227DD4EEF002CAE72 /* reviewCell.swift */; };
 		E093B87727E2C7F200CAB52B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093B87627E2C7F200CAB52B /* SettingsViewController.swift */; };
 		E095958827C758B1009C75C4 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = E095958727C758B1009C75C4 /* user.swift */; };
@@ -43,6 +44,7 @@
 		E0DCA97F27DFEABA0021C7D2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DCA97E27DFEABA0021C7D2 /* SearchViewController.swift */; };
 		E0DCA98127E00ECD0021C7D2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DCA98027E00ECD0021C7D2 /* NavigationController.swift */; };
 		E0DCA98327E014220021C7D2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DCA98227E014220021C7D2 /* TabBarController.swift */; };
+		E0F79EDD280208290020F575 /* CreateBusinessProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F79EDC280208290020F575 /* CreateBusinessProfileViewController.swift */; };
 		E826F5D527FE005900D345A1 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E826F5D427FE005900D345A1 /* EditProfileViewController.swift */; };
 		E8AA45D327DE844700D215C2 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AA45D227DE844700D215C2 /* FavoritesViewController.swift */; };
 		E8AA45D527DE897F00D215C2 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AA45D427DE897F00D215C2 /* FavoritesCell.swift */; };
@@ -100,6 +102,7 @@
 		E04FB54C27D946BE00E12D27 /* BusinessLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLocationViewController.swift; sourceTree = "<group>"; };
 		E070AF1B27E260E800203180 /* BuisnessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuisnessCell.swift; sourceTree = "<group>"; };
 		E070AF1D27E2619B00203180 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E077E12528029CBB006A73F2 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		E07D78C227DD4EEF002CAE72 /* reviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reviewCell.swift; sourceTree = "<group>"; };
 		E093B87627E2C7F200CAB52B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E095958727C758B1009C75C4 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
@@ -114,6 +117,7 @@
 		E0DCA97E27DFEABA0021C7D2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E0DCA98027E00ECD0021C7D2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		E0DCA98227E014220021C7D2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E0F79EDC280208290020F575 /* CreateBusinessProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBusinessProfileViewController.swift; sourceTree = "<group>"; };
 		E826F5D427FE005900D345A1 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		E8AA45D227DE844700D215C2 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		E8AA45D427DE897F00D215C2 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 				E0DCA98027E00ECD0021C7D2 /* NavigationController.swift */,
 				E0DCA98227E014220021C7D2 /* TabBarController.swift */,
 				E070AF1D27E2619B00203180 /* HomeViewController.swift */,
+				E077E12528029CBB006A73F2 /* LaunchScreenViewController.swift */,
 			);
 			path = SmallBuisnessFinder;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 			children = (
 				E095958E27C75DA3009C75C4 /* LoginViewController.swift */,
 				E095959027C75F95009C75C4 /* CreateAccountViewController.swift */,
+				E0F79EDC280208290020F575 /* CreateBusinessProfileViewController.swift */,
 			);
 			path = Opening;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				51BDA85227C6AE00000395B2 /* SceneDelegate.swift in Sources */,
 				E0A210B827E6A1500074DDB9 /* ReviewObject.swift in Sources */,
 				E095958C27C75A48009C75C4 /* extensions.swift in Sources */,
+				E0F79EDD280208290020F575 /* CreateBusinessProfileViewController.swift in Sources */,
 				E04FB54727D93D0500E12D27 /* UserObjects.swift in Sources */,
 				E0DCA97D27DFEA3B0021C7D2 /* FiltersViewController.swift in Sources */,
 				E826F5D527FE005900D345A1 /* EditProfileViewController.swift in Sources */,
@@ -588,6 +595,7 @@
 				E093B87727E2C7F200CAB52B /* SettingsViewController.swift in Sources */,
 				E04FB54427D93A1500E12D27 /* BusinessProfileHeader.swift in Sources */,
 				E04FB53F27D92D7100E12D27 /* BusinessProfileViewController.swift in Sources */,
+				E077E12628029CBB006A73F2 /* LaunchScreenViewController.swift in Sources */,
 				E0D8EFE427EF8751003651F0 /* ReviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

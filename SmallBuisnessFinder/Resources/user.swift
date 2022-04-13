@@ -45,6 +45,24 @@ public class AuthManager {
         }
     }
     
+    public func newBusiness(name: String, email: String, password: String, username: String, phoneNumber: String, websiteLink: String?, latCoord: Double?, longCoord: Double?, completion: @escaping (Bool) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+            guard error == nil, authResult != nil else {
+                completion(false)
+                return
+            }
+            
+            DatabaseFunctions.sharedData.insertNewBusiness(with: email, name: name, username: username, number: phoneNumber, website: websiteLink ?? "", latCoord: latCoord ?? 0, longCoord: longCoord ?? 0) { insert in
+                if insert {
+                    completion(true)
+                } else {
+                    completion(false)
+                    return
+                }
+            }
+        }
+    }
+    
     public func loginUser(email: String?, password: String, completion: @escaping (Bool) -> Void) {
         
         if let email = email {

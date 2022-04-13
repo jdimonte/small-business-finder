@@ -135,7 +135,6 @@ class ReviewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             submitButton.heightAnchor.constraint(equalToConstant: 40),
             submitButton.widthAnchor.constraint(equalToConstant: 200),
         ].forEach { $0.isActive = true }
-        
     }
     
     @objc func didTapSubmit() {

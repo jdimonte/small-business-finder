@@ -225,7 +225,9 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     }
     @objc func didTapHere() {
         //let vc = SetttingsViewController()
-        let vc = ReviewViewController()
+        //let vc = ReviewViewController()
+        //let vc = CreateBusinessProfileViewController()
+        let vc = LaunchScreenViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -464,7 +466,7 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.reviewsArray.count == 0 {
-            return 10
+            return 0
         } else {
             return self.reviewsArray.count
         }
