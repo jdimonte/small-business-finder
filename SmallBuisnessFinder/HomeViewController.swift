@@ -26,9 +26,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var businessesArray: NSDictionary!
-    
+     
     var businessArray = [BusinessObject]()
     
     override func viewDidLoad() {
@@ -44,6 +42,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        //added
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.tableView.backgroundColor = UIColor(named: "purple")
         //let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 
         //view.addGestureRecognizer(tap)
@@ -89,71 +90,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             for i in dict.keys {
                 if let bus = dict[i] {
-                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
+                    self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, category: bus["category"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
                 }
             }
             DispatchQueue.main.async { self.tableView.reloadData() }
         }
-       
-        self.tableView.reloadData()
-        
-        /*
-        var ref:DatabaseReference!
-        ref = Database.database().reference()
-         */
-        
-        /*
-        let ref = Database.database().reference()
-        let usersRef = ref.child("businesses").observeSingleEvent(of: .value, with: {(snapshot) in
-        print(snapshot)
-        self.businessesArray = snapshot.value as! NSDictionary
-        print(self.businessesArray)
-        */
-//stores users data in dictionary(key/value pairs)
-        /*
-        let item = ref.child("businesses").observe(.childAdded) { (snapshot) in
-          print("\((snapshot.value as? NSDictionary)!)")
-          self.tableView.reloadData()
-        }
-        */
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*
-        let tappedCell = sender
-        let indexPath = self.tableView .indexPath(for: tappedCell as! UITableViewCell)
-        //let business = self.businessesArray[indexPath]
-        let business:[String:String] = ["name":"Freddy's", "description":"Best Pizza in Ann Arbor!", "distance": "10"]
-        let detailsViewController = segue destinationViewController
-        
-        detailsViewController.business = business
-        */
-        print("AHHHH")
-        
-        //let controller = (segue.destination as! UINavigationController).viewControllers[0] as! DetailsViewController
-        //controller.businessName.text = "Done..."
-    
-
-        
-        //guard let firstVC = segue.destination as? DetailsViewController else { return }
-        //firstVC.businessName.text = "Freddy's"
-        
-        print("AHHHH")
-        /*
-        UITableViewCell *tappedCell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-        NSDictionary *movie = self.movies[indexPath.row];
-        
-        DetailsViewController *detailsViewController = [segue destinationViewController];
-        detailsViewController.movie = movie;
- */
     }
     
     // need to get this setup properly so the segue will not happen if the credentials are incorrect
     //override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
       //  return loginSuccess
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if businessArray.count == 0 {
@@ -173,12 +119,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         return cell!
     }
+    /*
+     self.businessArray.append(BusinessObject(name: i, phoneNumber: "810-404-2577", busDescription: bus["description"] as? String, latCoord: nil, longCoord: nil, websiteLink: bus["website"] as? String, following: 10, followers: 10))
+     */
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = BusinessProfileViewController()
-        vc.isUser = false
-        vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
+        vc.business = BusinessObject(name: businessArray[indexPath.row].name, phoneNumber: businessArray[indexPath.row].phoneNumber, busDescription: businessArray[indexPath.row].busDescription, category: businessArray[indexPath.row].category, latCoord: businessArray[indexPath.row].latCoord, longCoord: businessArray[indexPath.row].longCoord, websiteLink: businessArray[indexPath.row].websiteLink, following: businessArray[indexPath.row].following, followers: businessArray[indexPath.row].followers)
         //performSegue(withIdentifier: "detail", sender: self)
         self.navigationController?.pushViewController(vc, animated: true)
     }

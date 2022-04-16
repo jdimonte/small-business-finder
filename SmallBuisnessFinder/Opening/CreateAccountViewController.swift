@@ -29,7 +29,7 @@ class CreateAccountViewController: UIViewController {
             guard let email = email.text else { return }
             guard let password = password.text else { return }
             
-            AuthManager.sharedAuth.newUser(username: username, email: email, password: password, number: phoneNumber.text ?? nil, name: name) { didRegister in
+            AuthManager.sharedAuth.newUser(username: username, email: email, password: password, number: phoneNumber.text ?? nil, name: name, likedBusinesses: []) { didRegister in
                 // possibly need to put the registration on a separte thread
                 if didRegister {
                     // enter app
@@ -63,6 +63,8 @@ class CreateAccountViewController: UIViewController {
     func setup() {
         password.isSecureTextEntry = true
         confirmPassword.isSecureTextEntry = true
+        createAccount.layer.cornerRadius = 0.05 * createAccount.bounds.size.width //added
+
     }
     
     func checkInputs() -> Bool {
