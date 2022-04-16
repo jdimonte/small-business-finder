@@ -8,12 +8,14 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInDelegate {
 
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var button: UIButton! //added
     
     var loginSuccess = true
     
@@ -23,12 +25,33 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func googleSignInPressed(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    //Sign in functionality will be handled here
+        if let error = error {
+        print(error.localizedDescription)
+        return
+        }
+        guard let auth = user.authentication else { return }
+        let credentials = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
+        Auth.auth().signIn(with: credentials) { (authResult, error) in
+            if let error = error {
+            print(error.localizedDescription)
+            } else {
+                print("Login Successful.")
+            //This is where you should add the functionality of successful login
+            //i.e. dismissing this view or push the home view controller etc
+            }
+        }
+    }
     
     @IBAction func login(_ sender: Any) {
     
         guard let username = username.text else { return }
         guard let password = password.text else { return }
-        
         
         // figure out how we will validate emails
         AuthManager.sharedAuth.loginUser(email: username, password: password) { success in
@@ -54,6 +77,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         password.isSecureTextEntry = true
         
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 
         view.addGestureRecognizer(tap)
@@ -66,6 +92,7 @@ class LoginViewController: UIViewController {
         businessAccount.setTitleColor(.systemBlue, for: .normal)
         
         view.addSubview(businessAccount)
+        button.layer.cornerRadius = 0.05 * button.bounds.size.width //added
 
         // Do any additional setup after loading the view.
     }

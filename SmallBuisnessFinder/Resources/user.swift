@@ -12,7 +12,7 @@ public class AuthManager {
     
     static let sharedAuth = AuthManager()
     
-    public func newUser(username: String, email: String, password: String, number: String?, name: String, completion: @escaping (Bool) -> Void) {
+    func newUser(username: String, email: String, password: String, number: String?, name: String, likedBusinesses: [BusinessObject],completion: @escaping (Bool) -> Void) {
         
         // check if username is available
         // check if email is available
