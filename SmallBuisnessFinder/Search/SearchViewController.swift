@@ -161,7 +161,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch searchSettings {
         case .businesses:
             vc.isUser = false
-            vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
+            vc.business = BusinessObject(name: businessNames[indexPath.row], phoneNumber: "800-123-4567", busDescription: descriptions[indexPath.row], category: "Food and Hospitality", latCoord: nil, longCoord: nil, websiteLink: nil, following: nil, followers: nil)
         case .users:
             vc.isUser = true
             vc.user = users[indexPath.row]
