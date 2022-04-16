@@ -19,11 +19,12 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
     var location = UITextField()
     var websiteLink = UITextField()
     var submit = UIButton()
-    var coordinates: CLLocationCoordinate2D?
     var category = UIPickerView()
     //var categoryLabel = UILabel()
     var backButton = UIButton()
     var bio = UITextView()
+    var scrollView = UIScrollView()
+    var contentView = UIView()
     
     var categoryOptions = ["Food and Hospitality", "Clothing", "Grocery Store", "Physical Labor", "IT & Internet", "Miscellaneous"]
     var coordinates: CLLocation?
@@ -41,6 +42,13 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
     
     func setup() {
         
+        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        scrollView.isScrollEnabled = true
+        view.addSubview(scrollView)
+        
+        contentView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        scrollView.addSubview(contentView)
+        
         name.placeholder = "Business Name"
         email.placeholder = "Email"
         username.placeholder = "Username"
@@ -50,6 +58,7 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
         websiteLink.placeholder = "Website Link"
         //bio.placeholder = "Business Description"
         bio.text = "Business Description"
+        location.placeholder = "Location"
         
         name.font = .systemFont(ofSize: 14)
         email.font = .systemFont(ofSize: 14)
@@ -98,18 +107,18 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
         backButton.setTitleColor(.systemBlue, for: .normal)
         
         
-        view.addSubview(name)
-        view.addSubview(email)
-        view.addSubview(username)
-        view.addSubview(password)
-        view.addSubview(confirmPassword)
-        view.addSubview(phoneNumber)
-        view.addSubview(websiteLink)
-        view.addSubview(location)
-        view.addSubview(submit)
-        view.addSubview(category)
-        view.addSubview(backButton)
-        view.addSubview(bio)
+        contentView.addSubview(name)
+        contentView.addSubview(email)
+        contentView.addSubview(username)
+        contentView.addSubview(password)
+        contentView.addSubview(confirmPassword)
+        contentView.addSubview(phoneNumber)
+        contentView.addSubview(websiteLink)
+        contentView.addSubview(location)
+        contentView.addSubview(submit)
+        contentView.addSubview(category)
+        contentView.addSubview(backButton)
+        contentView.addSubview(bio)
         
         layoutConstraints()
     }
@@ -130,13 +139,13 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
         bio.translatesAutoresizingMaskIntoConstraints = false
         
         [
-            name.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            name.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            name.topAnchor.constraint(equalTo: view.topAnchor, constant: 75),
+            name.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            name.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            name.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 75),
             name.heightAnchor.constraint(equalToConstant: 30),
             
-            email.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            email.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            email.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            email.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             email.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 30),
             email.heightAnchor.constraint(equalToConstant: 30),
             
@@ -170,18 +179,18 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
             websiteLink.topAnchor.constraint(equalTo: phoneNumber.bottomAnchor, constant: 30),
             websiteLink.heightAnchor.constraint(equalToConstant: 30),
             
-            category.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            category.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            category.topAnchor.constraint(equalTo: websiteLink.bottomAnchor, constant: 30),
-            category.heightAnchor.constraint(equalToConstant: 50),
-            
             location.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             location.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             location.topAnchor.constraint(equalTo: websiteLink.bottomAnchor, constant: 30),
             location.heightAnchor.constraint(equalToConstant: 30),
             
+            category.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            category.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            category.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 30),
+            category.heightAnchor.constraint(equalToConstant: 50),
+            
             submit.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            submit.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 15),
+            submit.topAnchor.constraint(equalTo: category.bottomAnchor, constant: 15),
             submit.heightAnchor.constraint(equalToConstant: 40),
             submit.widthAnchor.constraint(equalToConstant: 200),
             
@@ -191,6 +200,10 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
             backButton.widthAnchor.constraint(equalToConstant: 150)
             
         ].forEach { $0.isActive = true }
+        
+        self.view.layoutIfNeeded()
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: self.backButton.frame.maxY + 60)
+        contentView.frame.size.height = scrollView.frame.size.height
     }
     
     @objc func didTapLocation() {
@@ -220,7 +233,7 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
             print(coordinates?.coordinate.latitude)
             print(coordinates?.coordinate.longitude)
             
-            AuthManager.sharedAuth.newBusiness(name: name, email: email, password: password, username: username, phoneNumber: phoneNumber.text ?? "", websiteLink: websiteLink.text ?? nil, latCoord: coordinates?.coordinate.latitude ?? nil, longCoord: coordinates?.coordinate.longitude ?? nil) { didRegister in
+            AuthManager.sharedAuth.newBusiness(name: name, email: email, password: password, username: username, phoneNumber: phoneNumber.text ?? "", websiteLink: websiteLink.text ?? nil, latCoord: coordinates?.coordinate.latitude ?? nil, longCoord: coordinates?.coordinate.longitude ?? nil, category: "Food and Hospitality", busDescription: bio) { didRegister in
                 // possibly need to put the registration on a separte thread
                 if didRegister {
                     // enter app
