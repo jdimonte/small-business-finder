@@ -52,7 +52,7 @@ public class AuthManager {
                 return
             }
             
-            DatabaseFunctions.sharedData.insertNewBusiness(with: email, name: name, username: username, number: phoneNumber, website: websiteLink ?? "", latCoord: latCoord ?? 0, longCoord: longCoord ?? 0, category: "Restaurant", busDescription: "We offer a variety of things") { insert in
+            DatabaseFunctions.sharedData.insertNewBusiness(with: email, name: name, username: username, number: phoneNumber, website: websiteLink ?? "", latCoord: latCoord ?? 0, longCoord: longCoord ?? 0, category: "Food and Hospitality", busDescription: "We offer a variety of things") { insert in
                 if insert {
                     completion(true)
                 } else {

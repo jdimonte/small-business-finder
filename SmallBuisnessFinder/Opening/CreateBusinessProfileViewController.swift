@@ -16,7 +16,7 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
     var password = UITextField()
     var confirmPassword = UITextField()
     var phoneNumber = UITextField()
-    var location = UIButton()
+    var location = UITextField()
     var websiteLink = UITextField()
     var submit = UIButton()
     var coordinates: CLLocationCoordinate2D?
@@ -26,6 +26,7 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
     var bio = UITextView()
     
     var categoryOptions = ["Food and Hospitality", "Clothing", "Grocery Store", "Physical Labor", "IT & Internet", "Miscellaneous"]
+    var coordinates: CLLocation?
     
 
     override func viewDidLoad() {
@@ -64,12 +65,6 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
         //bio.contentVerticalAlignment = .top
         
         
-        location.setTitle("Location", for: .normal)
-        location.layer.cornerRadius = 10
-        location.layer.masksToBounds = true
-        location.addTarget(self, action: #selector(didTapLocation), for: .touchUpInside)
-        location.backgroundColor = .blue // change to color scheme
-        
         submit.setTitle("Create Account", for: .normal)
         submit.layer.cornerRadius = 10
         submit.layer.masksToBounds = true
@@ -84,6 +79,7 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
         confirmPassword.borderStyle = UITextField.BorderStyle.roundedRect
         phoneNumber.borderStyle = UITextField.BorderStyle.roundedRect
         websiteLink.borderStyle = UITextField.BorderStyle.roundedRect
+        location.borderStyle = UITextField.BorderStyle.roundedRect
         //bio.borderStyle = UITextField.BorderStyle.roundedRect
         bio.layer.borderWidth = 0.5
         bio.layer.borderColor = UIColor.extraLightGray.cgColor
@@ -181,8 +177,8 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
             
             location.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             location.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            location.topAnchor.constraint(equalTo: category.bottomAnchor, constant: 30),
-            location.heightAnchor.constraint(equalToConstant: 40),
+            location.topAnchor.constraint(equalTo: websiteLink.bottomAnchor, constant: 30),
+            location.heightAnchor.constraint(equalToConstant: 30),
             
             submit.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             submit.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 15),
@@ -209,8 +205,23 @@ class CreateBusinessProfileViewController: UIViewController, UIPickerViewDelegat
             guard let password = password.text else { return }
             guard let bio = bio.text else { return }
             
-            AuthManager.sharedAuth.newBusiness(name: name, email: email, password: password, username: username, phoneNumber: phoneNumber.text ?? "", websiteLink: websiteLink.text ?? nil, latCoord: coordinates?.latitude ?? 42.2808, longCoord: coordinates?.longitude ?? -83.7430, category: "Food and Hospitality", busDescription: bio) { didRegister in
-                // possibly need to put the registration on a separate thread
+            let geoCoder = CLGeocoder()
+            geoCoder.geocodeAddressString(location.text!) { (placemarks, error) in
+                if error == nil{
+                    if let placemark = placemarks?[0]{
+                        self.coordinates = placemark.location!
+                    }
+                }
+                else {
+                    print("OH NYO CAN'T FIND PLACE AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+                    print("OOOHHHH GOOD LORD PWEASE SAVE MWEEEEEEEEE")
+                }
+            }
+            print(coordinates?.coordinate.latitude)
+            print(coordinates?.coordinate.longitude)
+            
+            AuthManager.sharedAuth.newBusiness(name: name, email: email, password: password, username: username, phoneNumber: phoneNumber.text ?? "", websiteLink: websiteLink.text ?? nil, latCoord: coordinates?.coordinate.latitude ?? nil, longCoord: coordinates?.coordinate.longitude ?? nil) { didRegister in
+                // possibly need to put the registration on a separte thread
                 if didRegister {
                     // enter app
                     //self.performSegue(withIdentifier: "accountCreated", sender: self)
