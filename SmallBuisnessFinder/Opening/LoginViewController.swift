@@ -85,11 +85,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         view.addGestureRecognizer(tap)
         
         let businessAccount = UIButton()
+        businessAccount.setTitleColor(.black, for: .normal)
         businessAccount.setTitle("New Business Account?", for: .normal)
         businessAccount.addTarget(self, action: #selector(didTapBusinessAccount), for: .touchUpInside)
-        businessAccount.frame = CGRect(x: view.frame.size.width/3 - 30, y: view.frame.size.height/1.2, width: 200, height: 15)
+        businessAccount.frame = CGRect(x: view.frame.size.width/3 - 30, y: view.frame.size.height/1.15, width: 200, height: 15)
         businessAccount.titleLabel?.font = .systemFont(ofSize: 15)
-        businessAccount.setTitleColor(.systemBlue, for: .normal)
         
         view.addSubview(businessAccount)
         button.layer.cornerRadius = 0.05 * button.bounds.size.width //added
