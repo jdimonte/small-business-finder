@@ -226,12 +226,16 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     @objc func didTapHere() {
         //let vc = SetttingsViewController()
         //let vc = ReviewViewController()
-        //let vc = CreateBusinessProfileViewController()
-        let vc = LaunchScreenViewController()
+        let vc = CreateBusinessProfileViewController()
+        //let vc = LaunchScreenViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func setupUser() {
+        
+        if let user = UserFunctions.getUserFromDefaults() {
+            self.user = user
+        }
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(didTapHere))
         
@@ -388,10 +392,12 @@ class BusinessProfileViewController: UIViewController, UICollectionViewDelegate,
     }
     @objc func didTapFollowers() {
         let vc = FollowingViewController()
+        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     @objc func didTapFollowing() {
         let vc = FollowingViewController()
+        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

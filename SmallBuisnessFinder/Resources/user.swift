@@ -45,14 +45,14 @@ public class AuthManager {
         }
     }
     
-    public func newBusiness(name: String, email: String, password: String, username: String, phoneNumber: String, websiteLink: String?, latCoord: Double?, longCoord: Double?, completion: @escaping (Bool) -> Void) {
+    public func newBusiness(name: String, email: String, password: String, username: String, phoneNumber: String, websiteLink: String?, latCoord: Double?, longCoord: Double?, category: String, busDescription: String, completion: @escaping (Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             guard error == nil, authResult != nil else {
                 completion(false)
                 return
             }
             
-            DatabaseFunctions.sharedData.insertNewBusiness(with: email, name: name, username: username, number: phoneNumber, website: websiteLink ?? "", latCoord: latCoord ?? 0, longCoord: longCoord ?? 0) { insert in
+            DatabaseFunctions.sharedData.insertNewBusiness(with: email, name: name, username: username, number: phoneNumber, website: websiteLink ?? "", latCoord: latCoord ?? 0, longCoord: longCoord ?? 0, category: "Restaurant", busDescription: "We offer a variety of things") { insert in
                 if insert {
                     completion(true)
                 } else {

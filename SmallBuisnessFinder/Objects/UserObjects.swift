@@ -41,6 +41,7 @@ public class UserFunctions {
         user.name = name
         user.username = UserDefaults.standard.value(forKey: "username") as? String
         user.email = UserDefaults.standard.value(forKey: "email") as? String
+        user.phoneNumber = UserDefaults.standard.value(forKey: "phoneNum") as? String
         
         return user
     }

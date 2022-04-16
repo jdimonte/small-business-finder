@@ -57,6 +57,15 @@ class LoginViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 
         view.addGestureRecognizer(tap)
+        
+        let businessAccount = UIButton()
+        businessAccount.setTitle("New Business Account?", for: .normal)
+        businessAccount.addTarget(self, action: #selector(didTapBusinessAccount), for: .touchUpInside)
+        businessAccount.frame = CGRect(x: view.frame.size.width/3 - 30, y: view.frame.size.height/1.2, width: 200, height: 15)
+        businessAccount.titleLabel?.font = .systemFont(ofSize: 15)
+        businessAccount.setTitleColor(.systemBlue, for: .normal)
+        
+        view.addSubview(businessAccount)
 
         // Do any additional setup after loading the view.
     }
@@ -64,6 +73,11 @@ class LoginViewController: UIViewController {
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+    }
+    @objc func didTapBusinessAccount() {
+        let vc = CreateBusinessProfileViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     

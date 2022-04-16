@@ -23,8 +23,8 @@ class UserCell: UITableViewCell {
         self.profilePicture.frame = CGRect(x: 10, y: 10, width: 60, height: 60)
         self.profilePicture.layer.cornerRadius = 30
         self.profilePicture.layer.masksToBounds = true
-        self.name.frame = CGRect(x: profilePicture.frame.maxX + 10, y: 20, width: 150, height: 40)
-        self.followButton.frame = CGRect(x: name.frame.maxX + 20, y: 20, width: 150, height: 40)
+        self.name.frame = CGRect(x: profilePicture.frame.maxX + 10, y: 20, width: 200, height: 40)
+        self.followButton.frame = CGRect(x: name.frame.maxX + 10, y: 25, width: 100, height: 30)
         self.followButton.layer.borderWidth = 3
         self.followButton.layer.borderColor = UIColor.gray.cgColor
         
@@ -35,11 +35,10 @@ class UserCell: UITableViewCell {
         determineFollowButton()
     }
     
-    
     func determineFollowButton() {
         // see if the user for the cell is already followed by the user
         
-        var isFollowed = false
+        var isFollowed = true
         
         if isFollowed {
             followButton.setTitle("Following", for: .normal)
